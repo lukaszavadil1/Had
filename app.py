@@ -1,5 +1,7 @@
-import pygame, sys
+import pygame
+import sys
 from settings import *
+from button import *
 
 snake_1_head = pygame.image.load("imgs/snake_head.png")
 snake_2_head = pygame.image.load("imgs/snake_head_2.png")
@@ -17,6 +19,8 @@ class App:
         pygame.display.set_icon(self.icon)
         pygame.display.set_caption("Had")
         self.state = "intro"
+        self.intro_buttons = []
+        self.make_buttons()
 
     def run(self):
         while self.running:
@@ -36,7 +40,7 @@ class App:
             self.intro_update()
 
     def draw(self):
-        self.screen.fill(BG_COLOR)
+        self.screen.fill(COLORS.get("BGCOLOR"))
         if self.state == "intro":
             self.intro_draw()
         pygame.display.update()
@@ -52,4 +56,7 @@ class App:
         pass
 
     def intro_draw(self):
+        pass
+
+    def make_buttons(self):
         pass
