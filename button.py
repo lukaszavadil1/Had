@@ -9,7 +9,7 @@ class Button:
         self.width = width
         self.height = height
         self.color = color
-        self.border_color = COLORS.get("BLACK")
+        self.border_color = COLORS.get("black")
         self.hover_color = hover_color
         self.hovered = False
         self.action = action
@@ -40,7 +40,7 @@ class Button:
 
     def show_text(self):
         if self.text != None:
-            text = self.font.render(self.text, True, "BLACK")
+            text = self.font.render(self.text, True, COLORS.get("black"))
             text_size = text.get_size()
             text_pos = [(self.pos[0]+(self.width/2)-(text_size[0]/2)),
                         (self.pos[1]+(self.height/2)-(text_size[1]/2))
