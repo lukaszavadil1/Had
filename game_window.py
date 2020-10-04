@@ -10,9 +10,11 @@ class GameWindow:
         self.height = (SCREEN_HEIGHT-WINDOW_POS[1]*1.2)
 
     def update(self):
+        # WINDOW UPDATE
         self.app.snake.update()
 
     def draw(self):
+        # WINDOW DRAW
         self.draw_game_window()
         self.app.snake.draw()
 

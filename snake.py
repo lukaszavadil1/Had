@@ -2,6 +2,7 @@ import pygame
 import random
 from settings import *
 
+# IMAGE LOAD
 snake_head = pygame.image.load("imgs/snake_head.png")
 
 
@@ -19,9 +20,11 @@ class Snake:
         self.snake_head = []
 
     def update(self):
+        # SNAKE - MOVEMENT
         self.pos[0] += self.vel[0]
         self.pos[1] += self.vel[1]
 
+        # SNAKE - ROTATION
         if (self.angle == "right") and (self.vel[0] != -BLOCK_SIZE):
             self.head = pygame.transform.rotate(self.img, 270)
         elif (self.angle == "left") and (self.vel[0] != BLOCK_SIZE):
@@ -33,9 +36,11 @@ class Snake:
         else:
             pass
 
+        # SNAKE - COLLISION WITH BOUNDARIES
         if self.pos[0] < WINDOW_POS[0] or self.pos[0] >= self.game_window.width or \
                 self.pos[1] < WINDOW_POS[1] or self.pos[1] >= self.game_window.height+(WINDOW_POS[1]/2)+WINDOW_POS[0]:
             self.app.running = False
 
     def draw(self):
+        # SNAKE - BLIT
         self.app.screen.blit(self.head, self.pos)

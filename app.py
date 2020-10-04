@@ -157,12 +157,14 @@ class App:
             if event.type == pygame.K_ESCAPE:
                 self.running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
+                # BUTTON CLICK
                 for button in self.play_buttons:
                     if button.hovered:
                          button.click()
                     else:
                         pass
             if event.type == pygame.KEYDOWN:  # ON KEY DOWN
+                # BASIC MOVEMENT
                 if event.key == pygame.K_LEFT:
                     self.snake.vel = [-BLOCK_SIZE, 0]
                     self.snake.angle = "left"
