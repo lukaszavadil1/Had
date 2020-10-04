@@ -1,6 +1,7 @@
 FPS = 60
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 600
+# COLORS AND THEIR RGB CODE
 COLORS = {"bgcolor": (29, 106, 110),
           "black": (0, 0, 0),
           "green": (0, 150, 0),
@@ -11,12 +12,13 @@ COLORS = {"bgcolor": (29, 106, 110),
           "light_yellow": (255, 255, 0),
           "white": (255, 255, 255)
           }
+# TEXT SIZES
 BUTTON_TEXT_SIZE = {"xsmall": 18,
                     "small": 25,
                     "normal": 32,
                     "medium": 40,
                     "large": 80
                     }
-BUTTON_BORDER = 3
-WINDOW_POS = [10, 80]
-WINDOW_BORDER = 4
+BUTTON_BORDER = 3  # BORDER THICKNESS
+WINDOW_POS = [10, 80]  # UPPER LEFT CORNER [x, y]
+WINDOW_BORDER = 4  # BORDER THICKNESS

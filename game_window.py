@@ -20,4 +20,4 @@ class GameWindow:
         # BORDER
         pygame.draw.rect(self.app.screen,
                          COLORS.get("black"),
-                         (self.pos[0], self.pos[1], self.width, self.height), WINDOW_BORDER)
+                         (self.pos[0]-WINDOW_BORDER, self.pos[1]-WINDOW_BORDER, self.width+WINDOW_BORDER, self.height+WINDOW_BORDER), WINDOW_BORDER)
