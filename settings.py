@@ -9,6 +9,7 @@ COLORS = {"bgcolor": (29, 106, 110),
           "light_red": (255, 0, 0),
           "yellow": (200, 200, 0),
           "light_yellow": (255, 255, 0),
+          "white": (255, 255, 255)
           }
 BUTTON_TEXT_SIZE = {"xsmall": 18,
                     "small": 25,
@@ -16,3 +17,6 @@ BUTTON_TEXT_SIZE = {"xsmall": 18,
                     "medium": 40,
                     "large": 80
                     }
+BUTTON_BORDER = 3
+WINDOW_POS = [10, 80]
+WINDOW_BORDER = 4

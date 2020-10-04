@@ -2,6 +2,7 @@ import pygame
 import sys
 from settings import *
 from button import *
+from game_window import *
 
 snake_1_head = pygame.image.load("imgs/snake_head.png")
 snake_2_head = pygame.image.load("imgs/snake_head_2.png")
@@ -23,8 +24,10 @@ class App:
         self.intro_buttons = []
         self.active_buttons = self.intro_buttons
         self.make_buttons()
+        self.game_window = GameWindow(self)
 
     def run(self):
+        # MAIN LOOP
         while self.running:
             self.get_events()
             self.update()
@@ -62,7 +65,7 @@ class App:
         # <--------------------------------------------PLAY BUTTONS---------------------------------------------------->
 
         play_quit_button = Button(self,
-                                   [(SCREEN_WIDTH / 2) + 200, 20],
+                                   [SCREEN_WIDTH - 90, 20],
                                    80,
                                    40,
                                    COLORS.get("red"),
@@ -73,7 +76,7 @@ class App:
         self.play_buttons.append(play_quit_button)
 
         play_intro_button = Button(self,
-                                  [(SCREEN_WIDTH / 2) - 280, 20],
+                                  [10, 20],
                                   140,
                                   40,
                                   COLORS.get("yellow"),
@@ -83,19 +86,24 @@ class App:
                                   text="ZPĚT DO MENU")
         self.play_buttons.append(play_intro_button)
 
+        # <------------------------------------------------------------------------------------------------------------>
+
     def get_events(self):
+        # EVENT SWITCH
         if self.state == "intro":
             self.intro_events()
         if self.state == "play":
             self.play_events()
 
     def update(self):
+        # MAIN UPDATE
         if self.state == "intro":
             self.intro_update()
         if self.state == "play":
             self.play_update()
 
     def draw(self):
+        # MAIN DRAW
         self.screen.fill(COLORS.get("bgcolor"))
         if self.state == "intro":
             self.intro_draw()
@@ -106,6 +114,7 @@ class App:
 # <-------------------------------------------------------INTRO-------------------------------------------------------->
 
     def intro_events(self):
+        # INTRO EVENT HANDLING
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
@@ -119,23 +128,28 @@ class App:
                         pass
 
     def intro_update(self):
+        # INTRO STATE UPDATE
         for button in self.active_buttons:
             button.update()
 
     def intro_draw(self):
+        # INTRO STATE DRAW
         for button in self.active_buttons:
             button.draw()
 
     def intro_play(self):
+        # FROM INTRO STATE TO PLAY
         self.state = "play"
         self.active_buttons = self.play_buttons
 
     def intro_quit(self):
+        # QUIT FROM INTRO STATE
         self.running = False
 
 # <-------------------------------------------------------PLAY--------------------------------------------------------->
 
     def play_events(self):
+        # PLAY EVENT HANDLING
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
@@ -149,16 +163,22 @@ class App:
                         pass
 
     def play_update(self):
+        # PLAY STATE UPDATE
         for button in self.active_buttons:
             button.update()
+        self.game_window.update()
 
     def play_draw(self):
+        # PLAY STATE DRAW
+        self.game_window.draw()
         for button in self.active_buttons:
             button.draw()
 
     def play_quit(self):
+        # QUIT FROM PLAY STATE
         self.running = False
 
     def play_intro(self):
+        # FROM PLAY STATE TO INTRO
         self.state = "intro"
         self.active_buttons = self.intro_buttons

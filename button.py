@@ -29,7 +29,7 @@ class Button:
             pygame.draw.rect(self.app.screen, self.color, (self.pos[0], self.pos[1], self.width, self.height))
         else:
             pygame.draw.rect(self.app.screen, self.hover_color, (self.pos[0], self.pos[1], self.width, self.height))
-        pygame.draw.rect(self.app.screen, self.color, (self.pos[0], self.pos[1], self.width, self.height), 2)
+        pygame.draw.rect(self.app.screen, self.color, (self.pos[0], self.pos[1], self.width, self.height), BUTTON_BORDER)
         self.show_text()
 
     def click(self):
