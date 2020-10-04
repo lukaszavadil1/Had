@@ -3,8 +3,8 @@ import sys
 from settings import *
 from button import *
 from game_window import *
+from snake import *
 
-snake_1_head = pygame.image.load("imgs/snake_head.png")
 snake_2_head = pygame.image.load("imgs/snake_head_2.png")
 apple_img = pygame.image.load("imgs/apple.png")
 obstacle_img = pygame.image.load("imgs/obstacle.png")
@@ -25,6 +25,7 @@ class App:
         self.active_buttons = self.intro_buttons
         self.make_buttons()
         self.game_window = GameWindow(self)
+        self.snake = Snake(self)
 
     def run(self):
         # MAIN LOOP
@@ -153,7 +154,7 @@ class App:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
-            if event.type == pygame.KEYDOWN and pygame.K_ESCAPE:
+            if event.type == pygame.K_ESCAPE:
                 self.running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 for button in self.play_buttons:
@@ -161,6 +162,21 @@ class App:
                          button.click()
                     else:
                         pass
+            if event.type == pygame.KEYDOWN:  # ON KEY DOWN
+                if event.key == pygame.K_LEFT:
+                    self.snake.vel = [-BLOCK_SIZE, 0]
+                    self.snake.angle = "left"
+                elif event.key == pygame.K_RIGHT:
+                    self.snake.vel = [BLOCK_SIZE, 0]
+                    self.snake.angle = "right"
+                elif event.key == pygame.K_DOWN:
+                    self.snake.vel = [0, BLOCK_SIZE]
+                    self.snake.angle = "down"
+                elif event.key == pygame.K_UP:
+                    self.snake.vel = [0, -BLOCK_SIZE]
+                    self.snake.angle = "up"
+                else:
+                    pass
 
     def play_update(self):
         # PLAY STATE UPDATE
