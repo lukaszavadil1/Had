@@ -33,5 +33,9 @@ class Snake:
         else:
             pass
 
+        if self.pos[0] < WINDOW_POS[0] or self.pos[0] >= self.game_window.width or \
+                self.pos[1] < WINDOW_POS[1] or self.pos[1] >= self.game_window.height+(WINDOW_POS[1]/2)+WINDOW_POS[0]:
+            self.app.running = False
+
     def draw(self):
         self.app.screen.blit(self.head, self.pos)
