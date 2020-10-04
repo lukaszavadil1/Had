@@ -62,15 +62,26 @@ class App:
         # <--------------------------------------------PLAY BUTTONS---------------------------------------------------->
 
         play_quit_button = Button(self,
-                                   [(SCREEN_WIDTH / 2) - 75, 20],
-                                   100,
-                                   50,
+                                   [(SCREEN_WIDTH / 2) + 200, 20],
+                                   80,
+                                   40,
                                    COLORS.get("red"),
-                                   BUTTON_TEXT_SIZE.get("small"),
+                                   BUTTON_TEXT_SIZE.get("xsmall"),
                                    hover_color=COLORS.get("light_red"),
                                    action=self.play_quit,
                                    text="KONEC")
         self.play_buttons.append(play_quit_button)
+
+        play_intro_button = Button(self,
+                                  [(SCREEN_WIDTH / 2) - 280, 20],
+                                  140,
+                                  40,
+                                  COLORS.get("yellow"),
+                                  BUTTON_TEXT_SIZE.get("xsmall"),
+                                  hover_color=COLORS.get("light_yellow"),
+                                  action=self.play_intro,
+                                  text="ZPĚT DO MENU")
+        self.play_buttons.append(play_intro_button)
 
     def get_events(self):
         if self.state == "intro":
@@ -147,3 +158,7 @@ class App:
 
     def play_quit(self):
         self.running = False
+
+    def play_intro(self):
+        self.state = "intro"
+        self.active_buttons = self.intro_buttons

@@ -6,9 +6,12 @@ COLORS = {"bgcolor": (29, 106, 110),
           "green": (0, 150, 0),
           "light_green": (0, 255, 0),
           "red": (150, 0, 0),
-          "light_red": (255, 0, 0)
+          "light_red": (255, 0, 0),
+          "yellow": (200, 200, 0),
+          "light_yellow": (255, 255, 0),
           }
-BUTTON_TEXT_SIZE = {"small": 25,
+BUTTON_TEXT_SIZE = {"xsmall": 18,
+                    "small": 25,
                     "normal": 32,
                     "medium": 40,
                     "large": 80
