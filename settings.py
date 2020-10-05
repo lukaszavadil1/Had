@@ -13,12 +13,12 @@ COLORS = {"bgcolor": (29, 106, 110),
           "white": (255, 255, 255)
           }
 # TEXT SIZES
-BUTTON_TEXT_SIZE = {"xsmall": 18,
-                    "small": 25,
-                    "normal": 32,
-                    "medium": 40,
-                    "large": 80
-                    }
+TEXT_SIZE = {"xsmall": 18,
+             "small": 25,
+             "normal": 32,
+             "medium": 40,
+             "large": 70
+             }
 BUTTON_BORDER = 3  # BORDER THICKNESS
 WINDOW_POS = [10, 80]  # UPPER LEFT CORNER [x, y]
 WINDOW_BORDER = 4  # BORDER THICKNESS

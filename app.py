@@ -5,6 +5,7 @@ from settings import *
 from button import *
 from game_window import *
 from snake import *
+from text import *
 
 snake_2_head = pygame.image.load("imgs/snake_head_2.png")
 apple_img = pygame.image.load("imgs/apple.png")
@@ -24,6 +25,7 @@ class App:
         self.play_buttons = []
         self.intro_buttons = []
         self.pause_buttons = []
+        self.countdown = ["3", "2", "1"]
         self.active_buttons = self.intro_buttons
         self.make_buttons()
         self.game_window = GameWindow(self)
@@ -48,7 +50,7 @@ class App:
                                    150,
                                    75,
                                    COLORS.get("green"),
-                                   BUTTON_TEXT_SIZE.get("normal"),
+                                   TEXT_SIZE.get("normal"),
                                    hover_color=COLORS.get("light_green"),
                                    action=self.intro_interlude,
                                    text="HRÁT")
@@ -59,7 +61,7 @@ class App:
                                    150,
                                    75,
                                    COLORS.get("red"),
-                                   BUTTON_TEXT_SIZE.get("normal"),
+                                   TEXT_SIZE.get("normal"),
                                    hover_color=COLORS.get("light_red"),
                                    action=self.intro_quit,
                                    text="KONEC")
@@ -72,7 +74,7 @@ class App:
                                    80,
                                    40,
                                    COLORS.get("red"),
-                                   BUTTON_TEXT_SIZE.get("xsmall"),
+                                   TEXT_SIZE.get("xsmall"),
                                    hover_color=COLORS.get("light_red"),
                                    action=self.play_quit,
                                    text="KONEC")
@@ -83,7 +85,7 @@ class App:
                                   140,
                                   40,
                                   COLORS.get("yellow"),
-                                  BUTTON_TEXT_SIZE.get("xsmall"),
+                                  TEXT_SIZE.get("xsmall"),
                                   hover_color=COLORS.get("light_yellow"),
                                   action=self.play_intro,
                                   text="ZPĚT DO MENU")
@@ -94,7 +96,7 @@ class App:
                                    80,
                                    40,
                                    COLORS.get("yellow"),
-                                   BUTTON_TEXT_SIZE.get("xsmall"),
+                                   TEXT_SIZE.get("xsmall"),
                                    hover_color=COLORS.get("light_yellow"),
                                    action=self.play_pause,
                                    text="PAUZA")
@@ -107,7 +109,7 @@ class App:
                                   140,
                                   40,
                                   COLORS.get("yellow"),
-                                  BUTTON_TEXT_SIZE.get("xsmall"),
+                                  TEXT_SIZE.get("xsmall"),
                                   hover_color=COLORS.get("light_yellow"),
                                   action=self.pause_interlude,
                                   text="ZPĚT DO HRY")
@@ -118,7 +120,7 @@ class App:
                                    140,
                                    40,
                                    COLORS.get("yellow"),
-                                   BUTTON_TEXT_SIZE.get("xsmall"),
+                                   TEXT_SIZE.get("xsmall"),
                                    hover_color=COLORS.get("light_yellow"),
                                    action=self.pause_intro,
                                    text="ZPĚT DO MENU")
@@ -129,7 +131,7 @@ class App:
                                   80,
                                   40,
                                   COLORS.get("red"),
-                                  BUTTON_TEXT_SIZE.get("xsmall"),
+                                  TEXT_SIZE.get("xsmall"),
                                   hover_color=COLORS.get("light_red"),
                                   action=self.pause_quit,
                                   text="KONEC")
@@ -319,7 +321,14 @@ class App:
                 self.running = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_s:
-                    time.sleep(3)
+                    pygame.draw.rect(self.screen, COLORS.get("bgcolor"), (120, 20, 360, 50))
+                    for num in self.countdown:
+                        countdown_text = Text(self, [280, 0], TEXT_SIZE.get("large"), num, color=COLORS.get("light_red"))
+                        countdown_text.draw()
+                        pygame.display.update()
+                        pygame.draw.rect(self.screen, COLORS.get("bgcolor"), (280, 0, 40, 70))
+                        time.sleep(1)
+                        pygame.display.update()
                     self.interlude_play()
                     self.snake.vel = [10, 0]
 
@@ -331,6 +340,8 @@ class App:
     def interlude_draw(self):
         # INTERLUDE STATE DRAW
         self.game_window.draw()
+        resume_text = Text(self, [120, 20], TEXT_SIZE.get("medium"), "Stiskni 'S' pro start hry")
+        resume_text.draw()
 
     def interlude_quit(self):
         # QUIT FROM INTERLUDE STATE
