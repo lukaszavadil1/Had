@@ -22,7 +22,7 @@ class App:
         self.state = "intro"
         self.play_buttons = []
         self.intro_buttons = []
-        self.interlude_buttons = []
+        self.pause_buttons = []
         self.active_buttons = self.intro_buttons
         self.make_buttons()
         self.game_window = GameWindow(self)
@@ -88,51 +88,51 @@ class App:
                                   text="ZPĚT DO MENU")
         self.play_buttons.append(play_intro_button)
 
-        play_interlude_button = Button(self,
+        play_pause_button = Button(self,
                                    [280, 20],
                                    80,
                                    40,
                                    COLORS.get("yellow"),
                                    BUTTON_TEXT_SIZE.get("xsmall"),
                                    hover_color=COLORS.get("light_yellow"),
-                                   action=self.play_interlude,
+                                   action=self.play_pause,
                                    text="PAUZA")
-        self.play_buttons.append(play_interlude_button)
+        self.play_buttons.append(play_pause_button)
 
-        # <---------------------------------------INTERLUDE BUTTONS---------------------------------------------------->
+        # <------------------------------------------PAUSE BUTTONS----------------------------------------------------->
 
-        interlude_play_button = Button(self,
+        pause_play_button = Button(self,
                                   [260, 20],
                                   140,
                                   40,
                                   COLORS.get("yellow"),
                                   BUTTON_TEXT_SIZE.get("xsmall"),
                                   hover_color=COLORS.get("light_yellow"),
-                                  action=self.interlude_play,
+                                  action=self.pause_play,
                                   text="ZPĚT DO HRY")
-        self.interlude_buttons.append(interlude_play_button)
+        self.pause_buttons.append(pause_play_button)
 
-        interlude_intro_button = Button(self,
+        pause_intro_button = Button(self,
                                    [10, 20],
                                    140,
                                    40,
                                    COLORS.get("yellow"),
                                    BUTTON_TEXT_SIZE.get("xsmall"),
                                    hover_color=COLORS.get("light_yellow"),
-                                   action=self.play_intro,
+                                   action=self.pause_intro,
                                    text="ZPĚT DO MENU")
-        self.interlude_buttons.append(interlude_intro_button)
+        self.pause_buttons.append(pause_intro_button)
 
-        interlude_quit_button = Button(self,
+        pause_quit_button = Button(self,
                                   [510, 20],
                                   80,
                                   40,
                                   COLORS.get("red"),
                                   BUTTON_TEXT_SIZE.get("xsmall"),
                                   hover_color=COLORS.get("light_red"),
-                                  action=self.play_quit,
+                                  action=self.pause_quit,
                                   text="KONEC")
-        self.interlude_buttons.append(interlude_quit_button)
+        self.pause_buttons.append(pause_quit_button)
 
         # <------------------------------------------------------------------------------------------------------------>
 
@@ -142,8 +142,8 @@ class App:
             self.intro_events()
         if self.state == "play":
             self.play_events()
-        if self.state == "interlude":
-            self.interlude_events()
+        if self.state == "pause":
+            self.pause_events()
 
     def update(self):
         # MAIN UPDATE
@@ -151,8 +151,8 @@ class App:
             self.intro_update()
         if self.state == "play":
             self.play_update()
-        if self.state == "interlude":
-            self.interlude_update()
+        if self.state == "pause":
+            self.pause_update()
 
     def draw(self):
         # MAIN DRAW
@@ -161,8 +161,8 @@ class App:
             self.intro_draw()
         if self.state == "play":
             self.play_draw()
-        if self.state == "interlude":
-            self.interlude_draw()
+        if self.state == "pause":
+            self.pause_draw()
         pygame.display.update()
 
 # <-------------------------------------------------------INTRO-------------------------------------------------------->
@@ -254,14 +254,14 @@ class App:
         self.state = "intro"
         self.active_buttons = self.intro_buttons
 
-    def play_interlude(self):
-        # FROM PLAY STATE TO INTERLUDE
-        self.state = "interlude"
-        self.active_buttons = self.interlude_buttons
+    def play_pause(self):
+        # FROM PLAY STATE TO PAUSE
+        self.state = "pause"
+        self.active_buttons = self.pause_buttons
 
-# <---------------------------------------------------INTERLUDE-------------------------------------------------------->
+# <----------------------------------------------------PAUSE----------------------------------------------------------->
 
-    def interlude_events(self):
+    def pause_events(self):
         # PLAY EVENT HANDLING
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -270,35 +270,35 @@ class App:
                 self.running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # BUTTON CLICK
-                for button in self.interlude_buttons:
+                for button in self.pause_buttons:
                     if button.hovered:
                          button.click()
                     else:
                         pass
 
-    def interlude_update(self):
+    def pause_update(self):
         self.snake.vel = [0, 0]
         # PLAY STATE UPDATE
         for button in self.active_buttons:
             button.update()
         self.game_window.update()
 
-    def interlude_draw(self):
+    def pause_draw(self):
         # PLAY STATE DRAW
         self.game_window.draw()
         for button in self.active_buttons:
             button.draw()
 
-    def interlude_quit(self):
-        # QUIT FROM INTERLUDE STATE
+    def pause_quit(self):
+        # QUIT FROM PAUSE STATE
         self.running = False
 
-    def interlude_intro(self):
-        # FROM INTERLUDE STATE TO INTRO
+    def pause_intro(self):
+        # FROM PAUSE STATE TO INTRO
         self.state = "intro"
         self.active_buttons = self.intro_buttons
 
-    def interlude_play(self):
-        # FROM INTERLUDE STATE TO PLAY
+    def pause_play(self):
+        # FROM PAUSE STATE TO PLAY
         self.state = "play"
         self.active_buttons = self.play_buttons
