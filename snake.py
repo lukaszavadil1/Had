@@ -20,10 +20,17 @@ class Snake:
         self.snake_head = []
 
     def update(self):
+        self.rotate()
+        self.collision()
         # SNAKE - MOVEMENT
         self.pos[0] += self.vel[0]
         self.pos[1] += self.vel[1]
 
+    def draw(self):
+        # SNAKE - BLIT
+        self.app.screen.blit(self.head, self.pos)
+
+    def rotate(self):
         # SNAKE - ROTATION
         if (self.angle == "right") and (self.vel[0] != -BLOCK_SIZE):
             self.head = pygame.transform.rotate(self.img, 270)
@@ -36,11 +43,9 @@ class Snake:
         else:
             pass
 
+    def collision(self):
         # SNAKE - COLLISION WITH BOUNDARIES
         if self.pos[0] < WINDOW_POS[0] or self.pos[0] >= self.game_window.width or \
-                self.pos[1] < WINDOW_POS[1] or self.pos[1] >= self.game_window.height+(WINDOW_POS[1]/2)+WINDOW_POS[0]:
+                self.pos[1] < WINDOW_POS[1] or self.pos[1] >= self.game_window.height + (WINDOW_POS[1] / 2) + \
+                WINDOW_POS[0]:
             self.app.running = False
-
-    def draw(self):
-        # SNAKE - BLIT
-        self.app.screen.blit(self.head, self.pos)
