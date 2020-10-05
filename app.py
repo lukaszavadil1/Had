@@ -1,5 +1,6 @@
 import pygame
 import sys
+import time
 from settings import *
 from button import *
 from game_window import *
@@ -42,16 +43,16 @@ class App:
 
         # <--------------------------------------------INTRO BUTTONS--------------------------------------------------->
 
-        intro_play_button = Button(self,
+        intro_interlude_button = Button(self,
                                    [75, (SCREEN_HEIGHT/2)-37.5],
                                    150,
                                    75,
                                    COLORS.get("green"),
                                    BUTTON_TEXT_SIZE.get("normal"),
                                    hover_color=COLORS.get("light_green"),
-                                   action=self.intro_play,
+                                   action=self.intro_interlude,
                                    text="HRÁT")
-        self.intro_buttons.append(intro_play_button)
+        self.intro_buttons.append(intro_interlude_button)
 
         intro_quit_button = Button(self,
                                    [(SCREEN_WIDTH / 2) + 75, (SCREEN_HEIGHT / 2) - 37.5],
@@ -101,16 +102,16 @@ class App:
 
         # <------------------------------------------PAUSE BUTTONS----------------------------------------------------->
 
-        pause_play_button = Button(self,
+        pause_interlude_button = Button(self,
                                   [260, 20],
                                   140,
                                   40,
                                   COLORS.get("yellow"),
                                   BUTTON_TEXT_SIZE.get("xsmall"),
                                   hover_color=COLORS.get("light_yellow"),
-                                  action=self.pause_play,
+                                  action=self.pause_interlude,
                                   text="ZPĚT DO HRY")
-        self.pause_buttons.append(pause_play_button)
+        self.pause_buttons.append(pause_interlude_button)
 
         pause_intro_button = Button(self,
                                    [10, 20],
@@ -144,6 +145,8 @@ class App:
             self.play_events()
         if self.state == "pause":
             self.pause_events()
+        if self.state == "interlude":
+            self.interlude_events()
 
     def update(self):
         # MAIN UPDATE
@@ -153,6 +156,8 @@ class App:
             self.play_update()
         if self.state == "pause":
             self.pause_update()
+        if self.state == "interlude":
+            self.interlude_update()
 
     def draw(self):
         # MAIN DRAW
@@ -163,6 +168,8 @@ class App:
             self.play_draw()
         if self.state == "pause":
             self.pause_draw()
+        if self.state == "interlude":
+            self.interlude_draw()
         pygame.display.update()
 
 # <-------------------------------------------------------INTRO-------------------------------------------------------->
@@ -172,7 +179,7 @@ class App:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
-            if event.type == pygame.KEYDOWN and pygame.K_ESCAPE:
+            if event.type == pygame.K_ESCAPE:
                 self.running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 for button in self.intro_buttons:
@@ -191,10 +198,9 @@ class App:
         for button in self.active_buttons:
             button.draw()
 
-    def intro_play(self):
+    def intro_interlude(self):
         # FROM INTRO STATE TO PLAY
-        self.state = "play"
-        self.active_buttons = self.play_buttons
+        self.state = "interlude"
 
     def intro_quit(self):
         # QUIT FROM INTRO STATE
@@ -262,7 +268,7 @@ class App:
 # <----------------------------------------------------PAUSE----------------------------------------------------------->
 
     def pause_events(self):
-        # PLAY EVENT HANDLING
+        # PAUSE EVENT HANDLING
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
@@ -277,14 +283,14 @@ class App:
                         pass
 
     def pause_update(self):
+        # PAUSE STATE UPDATE
         self.snake.vel = [0, 0]
-        # PLAY STATE UPDATE
         for button in self.active_buttons:
             button.update()
         self.game_window.update()
 
     def pause_draw(self):
-        # PLAY STATE DRAW
+        # PAUSE STATE DRAW
         self.game_window.draw()
         for button in self.active_buttons:
             button.draw()
@@ -298,7 +304,39 @@ class App:
         self.state = "intro"
         self.active_buttons = self.intro_buttons
 
-    def pause_play(self):
+    def pause_interlude(self):
         # FROM PAUSE STATE TO PLAY
+        self.state = "interlude"
+
+# <-------------------------------------------------INTERLUDE---------------------------------------------------------->
+
+    def interlude_events(self):
+        # INTERLUDE EVENT HANDLING
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+            if event.type == pygame.K_ESCAPE:
+                self.running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_s:
+                    time.sleep(3)
+                    self.interlude_play()
+                    self.snake.vel = [10, 0]
+
+    def interlude_update(self):
+        # INTERLUDE STATE UPDATE
+        self.snake.vel = [0, 0]
+        self.game_window.update()
+
+    def interlude_draw(self):
+        # INTERLUDE STATE DRAW
+        self.game_window.draw()
+
+    def interlude_quit(self):
+        # QUIT FROM INTERLUDE STATE
+        self.running = False
+
+    def interlude_play(self):
+        # FROM INTERLUDE STATE TO PLAY
         self.state = "play"
         self.active_buttons = self.play_buttons
