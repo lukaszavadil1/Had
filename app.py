@@ -77,7 +77,7 @@ class App:
                                    TEXT_SIZE.get("xsmall"),
                                    hover_color=COLORS.get("light_red"),
                                    action=self.play_quit,
-                                   text="KONEC")
+                                   text="KONEC (Q)")
         self.play_buttons.append(play_quit_button)
 
         play_intro_button = Button(self,
@@ -88,7 +88,7 @@ class App:
                                   TEXT_SIZE.get("xsmall"),
                                   hover_color=COLORS.get("light_yellow"),
                                   action=self.play_intro,
-                                  text="ZPĚT DO MENU")
+                                  text="ZPĚT DO MENU (M)")
         self.play_buttons.append(play_intro_button)
 
         play_pause_button = Button(self,
@@ -99,7 +99,7 @@ class App:
                                    TEXT_SIZE.get("xsmall"),
                                    hover_color=COLORS.get("light_yellow"),
                                    action=self.play_pause,
-                                   text="PAUZA")
+                                   text="PAUZA (P)")
         self.play_buttons.append(play_pause_button)
 
         # <------------------------------------------PAUSE BUTTONS----------------------------------------------------->
@@ -112,7 +112,7 @@ class App:
                                   TEXT_SIZE.get("xsmall"),
                                   hover_color=COLORS.get("light_yellow"),
                                   action=self.pause_interlude,
-                                  text="ZPĚT DO HRY")
+                                  text="ZPĚT DO HRY (P)")
         self.pause_buttons.append(pause_interlude_button)
 
         pause_intro_button = Button(self,
@@ -123,7 +123,7 @@ class App:
                                    TEXT_SIZE.get("xsmall"),
                                    hover_color=COLORS.get("light_yellow"),
                                    action=self.pause_intro,
-                                   text="ZPĚT DO MENU")
+                                   text="ZPĚT DO MENU (M)")
         self.pause_buttons.append(pause_intro_button)
 
         pause_quit_button = Button(self,
@@ -134,7 +134,7 @@ class App:
                                   TEXT_SIZE.get("xsmall"),
                                   hover_color=COLORS.get("light_red"),
                                   action=self.pause_quit,
-                                  text="KONEC")
+                                  text="KONEC (Q)")
         self.pause_buttons.append(pause_quit_button)
 
         # <------------------------------------------------------------------------------------------------------------>
@@ -240,6 +240,15 @@ class App:
                     self.snake.angle = "up"
                 else:
                     pass
+                # KEY SHORTCUTS
+                if event.key == pygame.K_q:
+                    self.running = False
+                if event.key == pygame.K_p:
+                    self.state = "pause"
+                    self.active_buttons = self.pause_buttons
+                if event.key == pygame.K_m:
+                    self.state = "intro"
+                    self.active_buttons = self.intro_buttons
 
     def play_update(self):
         # PLAY STATE UPDATE
@@ -283,6 +292,14 @@ class App:
                          button.click()
                     else:
                         pass
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    self.running = False
+                if event.key == pygame.K_m:
+                    self.state = "intro"
+                    self.active_buttons = self.intro_buttons
+                if event.key == pygame.K_p:
+                    self.state = "interlude"
 
     def pause_update(self):
         # PAUSE STATE UPDATE
