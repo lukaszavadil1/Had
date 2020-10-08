@@ -16,4 +16,5 @@ class Text:
         pass
 
     def draw(self):
+        # TEXT BLIT
         self.app.screen.blit(self.countdown, self.pos)
