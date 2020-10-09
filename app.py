@@ -32,6 +32,11 @@ class App:
         self.active_buttons = self.intro.intro_buttons
         self.make_buttons()
 
+    @staticmethod
+    def quit():
+        pygame.quit()
+        sys.exit()
+
     def run(self):
         # MAIN LOOP
         while self.running:
@@ -39,8 +44,7 @@ class App:
             self.state_machine.update()
             self.state_machine.draw()
             self.clock.tick(FPS)
-        pygame.quit()
-        sys.exit()
+        quit()
 
     def make_buttons(self):
         # MAKE BUTTONS
