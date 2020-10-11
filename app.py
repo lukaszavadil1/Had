@@ -6,6 +6,7 @@ from intro import *
 from play import *
 from pause import *
 from interlude import *
+from instructions import *
 
 snake_2_head = pygame.image.load("imgs/snake_head_2.png")
 apple_img = pygame.image.load("imgs/apple.png")
@@ -29,6 +30,7 @@ class App:
         self.interlude = Interlude(self)
         self.play = Play(self)
         self.pause = Pause(self)
+        self.instructions = Instructions(self)
         self.active_buttons = self.intro.intro_buttons
         self.make_buttons()
 
@@ -51,5 +53,6 @@ class App:
         self.intro.make_intro_buttons()
         self.play.make_play_buttons()
         self.pause.make_pause_buttons()
+        self.instructions.make_instructions_buttons()
 
 

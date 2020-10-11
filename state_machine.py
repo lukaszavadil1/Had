@@ -16,6 +16,8 @@ class StateMachine:
             self.app.pause.pause_events()
         if self.app.state == "interlude":
             self.app.interlude.interlude_events()
+        if self.app.state == "instructions":
+            self.app.instructions.instructions_events()
 
     def update(self):
         # MAIN UPDATE
@@ -27,6 +29,8 @@ class StateMachine:
             self.app.pause.pause_update()
         if self.app.state == "interlude":
             self.app.interlude.interlude_update()
+        if self.app.state == "instructions":
+            self.app.instructions.instructions_update()
 
     def draw(self):
         # MAIN DRAW
@@ -39,4 +43,6 @@ class StateMachine:
             self.app.pause.pause_draw()
         if self.app.state == "interlude":
             self.app.interlude.interlude_draw()
+        if self.app.state == "instructions":
+            self.app.instructions.instructions_draw()
         pygame.display.update()
