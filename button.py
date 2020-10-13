@@ -3,7 +3,7 @@ from settings import *
 
 
 class Button:
-    def __init__(self, app, pos, width, height, color, text_size, hover_color=None, action=None, text=None):
+    def __init__(self, app, pos, width, height, color, text_size, hover_color=None, action=None, text=None, bold=False):
         self.app = app
         self.pos = pos
         self.width = width
@@ -15,7 +15,7 @@ class Button:
         self.action = action
         self.text = text
         self.text_size = text_size
-        self.font = pygame.font.SysFont("arial", text_size, bold=True)
+        self.font = pygame.font.SysFont("comicsansms", text_size, bold)
 
     def update(self):
         mouse_pos = pygame.mouse.get_pos()  # GETTING POSITION OF MOUSE

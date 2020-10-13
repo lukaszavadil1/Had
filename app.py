@@ -33,6 +33,7 @@ class App:
         self.instructions = Instructions(self)
         self.active_buttons = self.intro.intro_buttons
         self.make_buttons()
+        self.make_texts()
 
     @staticmethod
     def quit():
@@ -55,4 +56,5 @@ class App:
         self.pause.make_pause_buttons()
         self.instructions.make_instructions_buttons()
 
-
+    def make_texts(self):
+        self.instructions.make_instructions_texts()

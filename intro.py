@@ -48,8 +48,8 @@ class Intro:
     def make_intro_buttons(self):
         # MAKE INTRO BUTTONS
         intro_interlude_button = Button(self.app,
-                                        [(SCREEN_WIDTH / 2) - 75, (SCREEN_HEIGHT / 2) - 150],
-                                        150,
+                                        [(SCREEN_WIDTH / 2) - 100, (SCREEN_HEIGHT / 2) - 150],
+                                        200,
                                         75,
                                         COLORS.get("green"),
                                         TEXT_SIZE.get("normal"),
@@ -59,8 +59,8 @@ class Intro:
         self.intro_buttons.append(intro_interlude_button)
 
         intro_instructions_button = Button(self.app,
-                                           [(SCREEN_WIDTH / 2) - 75, (SCREEN_HEIGHT / 2) - 25],
-                                           150,
+                                           [(SCREEN_WIDTH / 2) - 100, (SCREEN_HEIGHT / 2) - 25],
+                                           200,
                                            75,
                                            COLORS.get("yellow"),
                                            TEXT_SIZE.get("normal"),
@@ -70,8 +70,8 @@ class Intro:
         self.intro_buttons.append(intro_instructions_button)
 
         intro_quit_button = Button(self.app,
-                                   [(SCREEN_WIDTH / 2) - 75, (SCREEN_HEIGHT / 2) + 100],
-                                   150,
+                                   [(SCREEN_WIDTH / 2) - 100, (SCREEN_HEIGHT / 2) + 100],
+                                   200,
                                    75,
                                    COLORS.get("red"),
                                    TEXT_SIZE.get("normal"),

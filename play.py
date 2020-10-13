@@ -78,8 +78,8 @@ class Play:
     def make_play_buttons(self):
         # MAKE PLAY BUTTONS
         play_quit_button = Button(self.app,
-                                  [SCREEN_WIDTH - 110, 20],
-                                  100,
+                                  [480, 20],
+                                  110,
                                   40,
                                   COLORS.get("red"),
                                   TEXT_SIZE.get("xsmall"),
@@ -90,7 +90,7 @@ class Play:
 
         play_intro_button = Button(self.app,
                                   [10, 20],
-                                  160,
+                                  190,
                                   40,
                                   COLORS.get("yellow"),
                                   TEXT_SIZE.get("xsmall"),
@@ -100,8 +100,8 @@ class Play:
         self.play_buttons.append(play_intro_button)
 
         play_pause_button = Button(self.app,
-                                  [270, 20],
-                                  100,
+                                  [260, 20],
+                                  110,
                                   40,
                                   COLORS.get("yellow"),
                                   TEXT_SIZE.get("xsmall"),
