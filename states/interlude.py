@@ -2,7 +2,7 @@ import pygame
 from settings import *
 from text import *
 import time
-from state_machine import *
+from states import state_machine
 
 
 class Interlude:

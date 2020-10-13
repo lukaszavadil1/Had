@@ -1,7 +1,7 @@
 import pygame
 from settings import *
 from button import *
-from state_machine import *
+from states import state_machine
 
 
 class Intro:
