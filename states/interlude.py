@@ -2,7 +2,7 @@ import pygame
 from settings import *
 from text import *
 import time
-from state_machine import *
+from states import state_machine
 
 
 class Interlude:
@@ -20,7 +20,7 @@ class Interlude:
                 self.running = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_s:
-                    pygame.draw.rect(self.app.screen, COLORS.get("bgcolor"), (120, 20, 360, 50))
+                    pygame.draw.rect(self.app.screen, COLORS.get("bgcolor"), (80, 20, 480, 55))
                     for num in self.countdown:
                         countdown_text = Text(self.app, [280, 0], TEXT_SIZE.get("large"), num, color=COLORS.get("light_red"))
                         countdown_text.draw()
@@ -39,7 +39,7 @@ class Interlude:
     def interlude_draw(self):
         # INTERLUDE STATE DRAW
         self.app.game_window.draw()
-        resume_text = Text(self.app, [120, 20], TEXT_SIZE.get("medium"), "Stiskni 'S' pro start hry")
+        resume_text = Text(self.app, [80, 10], TEXT_SIZE.get("medium"), "Stiskni 'S' pro start hry")
         resume_text.draw()
 
     def interlude_quit(self):

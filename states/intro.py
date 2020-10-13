@@ -1,14 +1,13 @@
 import pygame
 from settings import *
 from button import *
-from state_machine import *
+from states import state_machine
 
 
 class Intro:
     def __init__(self, app):
         self.intro_buttons = []
         self.app = app
-        self.running = True
 
     def intro_events(self):
         # INTRO EVENT HANDLING
@@ -38,6 +37,10 @@ class Intro:
         # FROM INTRO STATE TO PLAY
         self.app.state = "interlude"
 
+    def intro_instructions(self):
+        self.app.state = "instructions"
+        self.app.active_buttons = self.app.instructions.instructions_buttons
+
     def intro_quit(self):
         # QUIT FROM INTRO STATE
         self.app.running = False
@@ -45,8 +48,8 @@ class Intro:
     def make_intro_buttons(self):
         # MAKE INTRO BUTTONS
         intro_interlude_button = Button(self.app,
-                                        [75, (SCREEN_HEIGHT / 2) - 37.5],
-                                        150,
+                                        [(SCREEN_WIDTH / 2) - 100, (SCREEN_HEIGHT / 2) - 150],
+                                        200,
                                         75,
                                         COLORS.get("green"),
                                         TEXT_SIZE.get("normal"),
@@ -55,9 +58,20 @@ class Intro:
                                         text="HRÁT")
         self.intro_buttons.append(intro_interlude_button)
 
+        intro_instructions_button = Button(self.app,
+                                           [(SCREEN_WIDTH / 2) - 100, (SCREEN_HEIGHT / 2) - 25],
+                                           200,
+                                           75,
+                                           COLORS.get("yellow"),
+                                           TEXT_SIZE.get("normal"),
+                                           hover_color=COLORS.get("light_yellow"),
+                                           action=self.intro_instructions,
+                                           text="OVLÁDÁNÍ")
+        self.intro_buttons.append(intro_instructions_button)
+
         intro_quit_button = Button(self.app,
-                                   [(SCREEN_WIDTH / 2) + 75, (SCREEN_HEIGHT / 2) - 37.5],
-                                   150,
+                                   [(SCREEN_WIDTH / 2) - 100, (SCREEN_HEIGHT / 2) + 100],
+                                   200,
                                    75,
                                    COLORS.get("red"),
                                    TEXT_SIZE.get("normal"),

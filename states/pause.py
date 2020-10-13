@@ -60,8 +60,8 @@ class Pause:
     def make_pause_buttons(self):
         # MAKE PAUSE BUTTONS
         pause_interlude_button = Button(self.app,
-                                        [260, 20],
-                                        140,
+                                        [235, 20],
+                                        165,
                                         40,
                                         COLORS.get("yellow"),
                                         TEXT_SIZE.get("xsmall"),
@@ -72,7 +72,7 @@ class Pause:
 
         pause_intro_button = Button(self.app,
                                     [10, 20],
-                                    140,
+                                    175,
                                     40,
                                     COLORS.get("yellow"),
                                     TEXT_SIZE.get("xsmall"),
@@ -82,8 +82,8 @@ class Pause:
         self.pause_buttons.append(pause_intro_button)
 
         pause_quit_button = Button(self.app,
-                                    [510, 20],
-                                    80,
+                                    [485, 20],
+                                    105,
                                     40,
                                     COLORS.get("red"),
                                     TEXT_SIZE.get("xsmall"),
