@@ -1,5 +1,3 @@
-import pygame
-from settings import *
 from button import *
 from text import *
 

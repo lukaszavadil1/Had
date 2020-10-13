@@ -1,8 +1,5 @@
-import pygame
-from settings import *
 from text import *
 import time
-from states import state_machine
 
 
 class Interlude:

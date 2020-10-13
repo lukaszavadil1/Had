@@ -1,5 +1,4 @@
 import pygame
-import random
 from settings import *
 
 # IMAGE LOAD
