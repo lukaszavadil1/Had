@@ -4,7 +4,6 @@ import time
 
 class Interlude:
     def __init__(self, app):
-        self.running = True
         self.app = app
         self.countdown = ["3", "2", "1"]
 
@@ -12,9 +11,9 @@ class Interlude:
         # INTERLUDE EVENT HANDLING
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                self.running = False
+                self.app.running = False
             if event.type == pygame.K_ESCAPE:
-                self.running = False
+                self.app.running = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_s:
                     pygame.draw.rect(self.app.screen, COLORS.get("bgcolor"), (80, 20, 480, 55))
@@ -31,6 +30,7 @@ class Interlude:
     def interlude_update(self):
         # INTERLUDE STATE UPDATE
         self.app.snake.vel = [0, 0]
+        self.app.snake.pos = [self.app.game_window.width//2+WINDOW_POS[0], self.app.game_window.height//2]
         self.app.game_window.update()
 
     def interlude_draw(self):
