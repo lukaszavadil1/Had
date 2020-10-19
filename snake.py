@@ -48,8 +48,8 @@ class Snake:
         if self.pos[0] < WINDOW_POS[0] or self.pos[0] >= self.game_window.width or \
                 self.pos[1] < WINDOW_POS[1] or self.pos[1] >= self.game_window.height + (WINDOW_POS[1] / 2) + \
                 WINDOW_POS[0]:
-            self.app.state = "game_over"
-            self.app.active_buttons = self.app.game_over.game_over_buttons
+            self.app.state = "end_game"
+            self.app.active_buttons = self.app.end_game.end_game_buttons
 
     def update(self):
         self.rotate()
