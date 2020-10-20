@@ -18,6 +18,8 @@ class StateMachine:
             self.app.interlude.interlude_events()
         if self.app.state == "instructions":
             self.app.instructions.instructions_events()
+        if self.app.state == "end_game":
+            self.app.end_game.end_game_events()
 
     def update(self):
         # MAIN UPDATE
@@ -31,6 +33,8 @@ class StateMachine:
             self.app.interlude.interlude_update()
         if self.app.state == "instructions":
             self.app.instructions.instructions_update()
+        if self.app.state == "end_game":
+            self.app.end_game.end_game_update()
 
     def draw(self):
         # MAIN DRAW
@@ -45,4 +49,6 @@ class StateMachine:
             self.app.interlude.interlude_draw()
         if self.app.state == "instructions":
             self.app.instructions.instructions_draw()
+        if self.app.state == "end_game":
+            self.app.end_game.end_game_draw()
         pygame.display.update()

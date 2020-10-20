@@ -1,7 +1,7 @@
 import sys
 from game_window import *
 from snake import *
-from states import play, intro, state_machine, pause, interlude, instructions
+from states import play, intro, state_machine, pause, interlude, instructions, end_game
 
 snake_2_head = pygame.image.load("imgs/snake_head_2.png")
 apple_img = pygame.image.load("imgs/apple.png")
@@ -26,6 +26,7 @@ class App:
         self.play = play.Play(self)
         self.pause = pause.Pause(self)
         self.instructions = instructions.Instructions(self)
+        self.end_game = end_game.EndGame(self)
         self.active_buttons = self.intro.intro_buttons
         self.make_buttons()
         self.make_texts()
@@ -42,6 +43,7 @@ class App:
             self.state_machine.update()
             self.state_machine.draw()
             self.clock.tick(FPS)
+            print(self.state)
         quit()
 
     def make_buttons(self):
@@ -50,6 +52,8 @@ class App:
         self.play.make_play_buttons()
         self.pause.make_pause_buttons()
         self.instructions.make_instructions_buttons()
+        self.end_game.make_end_game_buttons()
 
     def make_texts(self):
         self.instructions.make_instructions_texts()
+        self.end_game.make_end_game_texts()

@@ -31,7 +31,7 @@ class Snake:
         else:
             pass
 
-    def move(self):
+    def default_move(self):
         if self.angle == "right" and self.app.state == "play":
             self.vel = [20, 0]
         elif self.angle == "left" and self.app.state == "play":
@@ -43,17 +43,21 @@ class Snake:
         else:
             pass
 
+    def collide(self):
+        # SNAKE - COLLISION WITH BOUNDARIES
+        if self.pos[0] < WINDOW_POS[0] or self.pos[0] >= self.game_window.width or \
+                self.pos[1] < WINDOW_POS[1] or self.pos[1] >= self.game_window.height + (WINDOW_POS[1] / 2) + \
+                WINDOW_POS[0]:
+            self.app.state = "end_game"
+            self.app.active_buttons = self.app.end_game.end_game_buttons
+
     def update(self):
         self.rotate()
-        self.move()
+        self.default_move()
+        self.collide()
         # SNAKE - MOVEMENT
         self.pos[0] += self.vel[0]
         self.pos[1] += self.vel[1]
-
-        # SNAKE - COLLISION WITH BOUNDARIES
-        if self.pos[0] < WINDOW_POS[0] or self.pos[0] >= self.game_window.width or \
-                self.pos[1] < WINDOW_POS[1] or self.pos[1] >= self.game_window.height+(WINDOW_POS[1]/2)+WINDOW_POS[0]:
-            self.app.running = False
 
     def draw(self):
         # SNAKE - BLIT

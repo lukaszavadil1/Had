@@ -19,7 +19,8 @@ TEXT_SIZE = {"xsmall": 18,
              "normal": 32,
              "medium": 40,
              "large": 52,
-             "xlarge": 70
+             "xlarge": 70,
+             "xxlarge": 82,
              }
 BUTTON_BORDER = 3  # BORDER THICKNESS
 WINDOW_POS = [10, 80]  # UPPER LEFT CORNER [x, y]
