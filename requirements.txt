@@ -1,3 +1,3 @@
 distlib==0.3.1
-pygame==1.9.6
-virtualenv==20.0.35
+pygame==2.0.0.dev6
+virtualenv==20.1.0
