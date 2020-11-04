@@ -16,27 +16,24 @@ class Interlude:
                 self.app.running = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_s:
-                    pygame.draw.rect(self.app.screen, COLORS.get("bgcolor"), (80, 20, 480, 55))
+                    pygame.draw.rect(self.app.screen, COLORS.get("bgcolor"), (165, 805, 480, 60))
                     for num in self.countdown:
-                        countdown_text = Text(self.app, [280, 0], TEXT_SIZE.get("large"), num, color=COLORS.get("light_red"))
+                        countdown_text = Text(self.app, [380, 800], TEXT_SIZE.get("large"), num, color=COLORS.get("light_red"))
                         countdown_text.draw()
                         pygame.display.update()
-                        pygame.draw.rect(self.app.screen, COLORS.get("bgcolor"), (280, 0, 40, 70))
+                        pygame.draw.rect(self.app.screen, COLORS.get("bgcolor"), (380, 805, 40, 70))
                         time.sleep(1)
                         pygame.display.update()
                     self.interlude_play()
-                    self.app.snake.vel = [10, 0]
 
     def interlude_update(self):
         # INTERLUDE STATE UPDATE
-        self.app.snake.vel = [0, 0]
-        self.app.snake.pos = [self.app.game_window.width//2+WINDOW_POS[0], self.app.game_window.height//2]
         self.app.game_window.update()
 
     def interlude_draw(self):
         # INTERLUDE STATE DRAW
         self.app.game_window.draw()
-        resume_text = Text(self.app, [80, 10], TEXT_SIZE.get("medium"), "Stiskni 'S' pro start hry")
+        resume_text = Text(self.app, [165, 805], TEXT_SIZE.get("medium"), "Stiskni 'S' pro start hry")
         resume_text.draw()
 
     def interlude_quit(self):

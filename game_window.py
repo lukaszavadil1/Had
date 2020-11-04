@@ -5,9 +5,7 @@ from settings import *
 class GameWindow:
     def __init__(self, app):
         self.app = app
-        self.pos = WINDOW_POS
-        self.width = (SCREEN_WIDTH-WINDOW_POS[0]*2)
-        self.height = (SCREEN_HEIGHT-WINDOW_POS[1]*1.2)
+        self.pos = [0, 0]
 
     def update(self):
         # WINDOW UPDATE
@@ -17,14 +15,22 @@ class GameWindow:
         # WINDOW DRAW
         self.draw_game_window()
         self.app.snake.draw()
+        self.app.apple.draw()
 
     def draw_game_window(self):
         # WINDOW
-        pygame.draw.rect(self.app.screen,
-                         COLORS.get("white"),
-                         (self.pos[0], self.pos[1], self.width, self.height))
-        # BORDER
+        for row in range(CELL_NUMBER):
+            if row % 2 == 0:
+                for col in range(CELL_NUMBER):
+                    if col % 2 == 0:
+                        grass_rect = pygame.Rect(col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+                        pygame.draw.rect(self.app.screen, COLORS.get("grass"), grass_rect)
+            else:
+                for col in range(CELL_NUMBER):
+                    if col % 2 != 0:
+                        grass_rect = pygame.Rect(col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+                        pygame.draw.rect(self.app.screen, COLORS.get("grass"), grass_rect)
         pygame.draw.rect(self.app.screen,
                          COLORS.get("black"),
-                         (self.pos[0]-WINDOW_BORDER, self.pos[1]-WINDOW_BORDER, self.width+WINDOW_BORDER, self.height+WINDOW_BORDER), WINDOW_BORDER)
-
+                         (self.pos[0], self.pos[1], CELL_NUMBER * CELL_SIZE,
+                          CELL_NUMBER * CELL_SIZE + GAME_WINDOW_BORDER), GAME_WINDOW_BORDER)

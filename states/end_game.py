@@ -21,6 +21,12 @@ class EndGame:
                         button.click()
                     else:
                         pass
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    self.app.quit()
+                if event.key == pygame.K_m:
+                    self.app.state = "intro"
+                    self.app.active_buttons = self.app.intro.intro_buttons
 
     def end_game_update(self):
         # GAME OVER STATE UPDATE
@@ -38,6 +44,7 @@ class EndGame:
 
     def end_game_intro(self):
         # FROM GAME OVER STATE TO INTRO
+        # self.app.snake.reset()
         self.app.state = "intro"
         self.app.active_buttons = self.app.intro.intro_buttons
 
@@ -47,7 +54,7 @@ class EndGame:
 
     def make_end_game_buttons(self):
         end_game_quit_button = Button(self.app,
-                                       [395, 300],
+                                       [500, 400],
                                        130,
                                        60,
                                        COLORS.get("red"),
@@ -58,7 +65,7 @@ class EndGame:
         self.end_game_buttons.append(end_game_quit_button)
 
         end_game_intro_button = Button(self.app,
-                                        [75, 300],
+                                        [170, 400],
                                         275,
                                         60,
                                         COLORS.get("yellow"),
@@ -70,7 +77,7 @@ class EndGame:
 
     def make_end_game_texts(self):
         test_text = Text(self.app,
-                         [55, 150],
+                         [155, 250],
                          TEXT_SIZE.get("xxlarge"),
                          "KONEC HRY!",
                          COLORS.get("red"))

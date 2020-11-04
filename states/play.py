@@ -1,4 +1,5 @@
 from button import *
+from pygame.math import Vector2
 
 
 class Play:
@@ -23,20 +24,18 @@ class Play:
                         pass
             if event.type == pygame.KEYDOWN:  # ON KEY DOWN
                 # BASIC MOVEMENT
+                if event.key == pygame.K_UP:
+                    if self.app.snake.direction.y != 1:
+                        self.app.snake.direction = Vector2(0, -1)
+                if event.key == pygame.K_RIGHT:
+                    if self.app.snake.direction.x != -1:
+                        self.app.snake.direction = Vector2(1, 0)
+                if event.key == pygame.K_DOWN:
+                    if self.app.snake.direction.y != -1:
+                        self.app.snake.direction = Vector2(0, 1)
                 if event.key == pygame.K_LEFT:
-                    self.snake.vel = [-BLOCK_SIZE, 0]
-                    self.snake.angle = "left"
-                elif event.key == pygame.K_RIGHT:
-                    self.snake.vel = [BLOCK_SIZE, 0]
-                    self.snake.angle = "right"
-                elif event.key == pygame.K_DOWN:
-                    self.snake.vel = [0, BLOCK_SIZE]
-                    self.snake.angle = "down"
-                elif event.key == pygame.K_UP:
-                    self.snake.vel = [0, -BLOCK_SIZE]
-                    self.snake.angle = "up"
-                else:
-                    pass
+                    if self.app.snake.direction.x != 1:
+                        self.app.snake.direction = Vector2(-1, 0)
                 # KEY SHORTCUTS
                 if event.key == pygame.K_q:
                     self.app.running = False
@@ -76,7 +75,7 @@ class Play:
     def make_play_buttons(self):
         # MAKE PLAY BUTTONS
         play_quit_button = Button(self.app,
-                                  [480, 20],
+                                  [680, 820],
                                   110,
                                   40,
                                   COLORS.get("red"),
@@ -87,7 +86,7 @@ class Play:
         self.play_buttons.append(play_quit_button)
 
         play_intro_button = Button(self.app,
-                                  [10, 20],
+                                  [10, 820],
                                   190,
                                   40,
                                   COLORS.get("yellow"),
@@ -98,7 +97,7 @@ class Play:
         self.play_buttons.append(play_intro_button)
 
         play_pause_button = Button(self.app,
-                                  [260, 20],
+                                  [380, 820],
                                   110,
                                   40,
                                   COLORS.get("yellow"),

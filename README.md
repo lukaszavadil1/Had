@@ -3,6 +3,8 @@ Závěrečná práce do 4. ročníku.
 
 Zde budou postupem času přibývat informace o hře.
 
+Game window nyní funguje na způsob gridu.
+
 # Postup spuštění hry
 
 1.) [Naklonujte](https://docs.github.com/en/enterprise/2.13/user/articles/cloning-a-repository) si repositář [Had](https://github.com/lukaszavadil1/Had)

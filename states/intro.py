@@ -32,6 +32,7 @@ class Intro:
 
     def intro_interlude(self):
         # FROM INTRO STATE TO PLAY
+        self.app.snake.reset()
         self.app.state = "interlude"
 
     def intro_instructions(self):
@@ -45,18 +46,18 @@ class Intro:
     def make_intro_buttons(self):
         # MAKE INTRO BUTTONS
         intro_interlude_button = Button(self.app,
-                                        [(SCREEN_WIDTH / 2) - 100, (SCREEN_HEIGHT / 2) - 150],
+                                        [(SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2) - 100],
                                         200,
                                         75,
-                                        COLORS.get("green"),
+                                        COLORS.get("dark_green"),
                                         TEXT_SIZE.get("normal"),
-                                        hover_color=COLORS.get("light_green"),
+                                        hover_color=COLORS.get("green"),
                                         action=self.intro_interlude,
                                         text="HRÁT")
         self.intro_buttons.append(intro_interlude_button)
 
         intro_instructions_button = Button(self.app,
-                                           [(SCREEN_WIDTH / 2) - 100, (SCREEN_HEIGHT / 2) - 25],
+                                           [(SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2) + 25],
                                            200,
                                            75,
                                            COLORS.get("yellow"),
@@ -67,7 +68,7 @@ class Intro:
         self.intro_buttons.append(intro_instructions_button)
 
         intro_quit_button = Button(self.app,
-                                   [(SCREEN_WIDTH / 2) - 100, (SCREEN_HEIGHT / 2) + 100],
+                                   [(SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2) + 150],
                                    200,
                                    75,
                                    COLORS.get("red"),
