@@ -38,17 +38,23 @@ class StateMachine:
 
     def draw(self):
         # MAIN DRAW
-        self.app.screen.fill(COLORS.get("bgcolor"))
         if self.app.state == "intro":
+            # self.app.screen.blit(self.app.intro.bg, (0, 0))
+            self.app.screen.fill(COLORS.get("bgcolor"))
             self.app.intro.intro_draw()
         if self.app.state == "play":
+            self.app.screen.fill(COLORS.get("bgcolor"))
             self.app.play.play_draw()
         if self.app.state == "pause":
+            self.app.screen.fill(COLORS.get("bgcolor"))
             self.app.pause.pause_draw()
         if self.app.state == "interlude":
+            self.app.screen.fill(COLORS.get("bgcolor"))
             self.app.interlude.interlude_draw()
         if self.app.state == "instructions":
+            self.app.screen.fill(COLORS.get("bgcolor"))
             self.app.instructions.instructions_draw()
         if self.app.state == "end_game":
+            self.app.screen.fill(COLORS.get("bgcolor"))
             self.app.end_game.end_game_draw()
         pygame.display.update()

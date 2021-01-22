@@ -1,5 +1,6 @@
 from button import *
 from settings import *
+from pygame.math import Vector2
 
 
 class Pause:
@@ -32,10 +33,10 @@ class Pause:
 
     def pause_update(self):
         # PAUSE STATE UPDATE
-        self.app.snake.vel = [0, 0]
+        self.app.snake.direction = Vector2(0, 0)
         for button in self.app.active_buttons:
             button.update()
-        self.app.game_window.update()
+        # self.app.game_window.update()
 
     def pause_draw(self):
         # PAUSE STATE DRAW
@@ -59,7 +60,7 @@ class Pause:
     def make_pause_buttons(self):
         # MAKE PAUSE BUTTONS
         pause_interlude_button = Button(self.app,
-                                        [235, 20],
+                                        [335, 820],
                                         165,
                                         40,
                                         COLORS.get("yellow"),
@@ -70,7 +71,7 @@ class Pause:
         self.pause_buttons.append(pause_interlude_button)
 
         pause_intro_button = Button(self.app,
-                                    [10, 20],
+                                    [10, 820],
                                     175,
                                     40,
                                     COLORS.get("yellow"),
@@ -81,7 +82,7 @@ class Pause:
         self.pause_buttons.append(pause_intro_button)
 
         pause_quit_button = Button(self.app,
-                                    [485, 20],
+                                    [680, 820],
                                     105,
                                     40,
                                     COLORS.get("red"),

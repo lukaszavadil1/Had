@@ -1,64 +1,125 @@
 import pygame
 from settings import *
-
-# IMAGE LOAD
-snake_head = pygame.image.load("imgs/snake_head.png")
+from apple import *
 
 
 class Snake:
     def __init__(self, app):
         self.app = app
-        self.game_window = app.game_window
-        self.pos = [self.game_window.width//2+WINDOW_POS[0], self.game_window.height//2]
-        self.vel = []
-        self.angle = "right"
-        self.img = snake_head
-        self.body = []
-        self.head = self.img
-        self.color = COLORS.get("light_green")
-        self.snake_head = []
+        self.body = [Vector2(5, 10), Vector2(4, 10), Vector2(3, 10)]
+        self.direction = Vector2(0, 0)
+        self.new_block = False
 
-    def rotate(self):
-        # SNAKE - ROTATION
-        if (self.angle == "right") and (self.vel[0] != -BLOCK_SIZE):
-            self.head = pygame.transform.rotate(self.img, 270)
-        elif (self.angle == "left") and (self.vel[0] != BLOCK_SIZE):
-            self.head = pygame.transform.rotate(self.img, 90)
-        elif (self.angle == "up") and (self.vel[1] != BLOCK_SIZE):
-            self.head = self.img
-        elif (self.angle == "down") and (self.vel[1] != -BLOCK_SIZE):
-            self.head = pygame.transform.rotate(self.img, 180)
-        else:
-            pass
+        self.head_up = pygame.image.load('imgs/head_up.png').convert_alpha()
+        self.head_down = pygame.image.load('imgs/head_down.png').convert_alpha()
+        self.head_right = pygame.image.load('imgs/head_right.png').convert_alpha()
+        self.head_left = pygame.image.load('imgs/head_left.png').convert_alpha()
 
-    def default_move(self):
-        if self.angle == "right" and self.app.state == "play":
-            self.vel = [20, 0]
-        elif self.angle == "left" and self.app.state == "play":
-            self.vel = [-20, 0]
-        elif self.angle == "up" and self.app.state == "play":
-            self.vel = [0, -20]
-        elif self.angle == "down" and self.app.state == "play":
-            self.vel = [0, 20]
-        else:
-            pass
+        self.tail_up = pygame.image.load('imgs/tail_up.png').convert_alpha()
+        self.tail_down = pygame.image.load('imgs/tail_down.png').convert_alpha()
+        self.tail_right = pygame.image.load('imgs/tail_right.png').convert_alpha()
+        self.tail_left = pygame.image.load('imgs/tail_left.png').convert_alpha()
 
-    def collide(self):
-        # SNAKE - COLLISION WITH BOUNDARIES
-        if self.pos[0] < WINDOW_POS[0] or self.pos[0] >= self.game_window.width or \
-                self.pos[1] < WINDOW_POS[1] or self.pos[1] >= self.game_window.height + (WINDOW_POS[1] / 2) + \
-                WINDOW_POS[0]:
-            self.app.state = "end_game"
-            self.app.active_buttons = self.app.end_game.end_game_buttons
+        self.body_vertical = pygame.image.load('imgs/body_vertical.png').convert_alpha()
+        self.body_horizontal = pygame.image.load('imgs/body_horizontal.png').convert_alpha()
 
-    def update(self):
-        self.rotate()
-        self.default_move()
-        self.collide()
-        # SNAKE - MOVEMENT
-        self.pos[0] += self.vel[0]
-        self.pos[1] += self.vel[1]
+        self.body_tr = pygame.image.load('imgs/body_tr.png').convert_alpha()
+        self.body_tl = pygame.image.load('imgs/body_tl.png').convert_alpha()
+        self.body_br = pygame.image.load('imgs/body_br.png').convert_alpha()
+        self.body_bl = pygame.image.load('imgs/body_bl.png').convert_alpha()
 
     def draw(self):
-        # SNAKE - BLIT
-        self.app.screen.blit(self.head, self.pos)
+        self.update_head_graphics()
+        self.update_tail_graphics()
+
+        for index, block in enumerate(self.body):
+            print(self.body)
+            x_pos = int(block.x * CELL_SIZE)
+            y_pos = int(block.y * CELL_SIZE)
+            block_rect = pygame.Rect(x_pos, y_pos, CELL_SIZE, CELL_SIZE)
+
+            if index == 0:
+                self.app.screen.blit(self.head, block_rect)
+            elif index == len(self.body) - 1:
+                self.app.screen.blit(self.tail, block_rect)
+            else:
+                previous_block = self.body[index + 1] - block
+                next_block = self.body[index - 1] - block
+                if previous_block.x == next_block.x:
+                    self.app.screen.blit(self.body_vertical, block_rect)
+                elif previous_block.y == next_block.y:
+                    self.app.screen.blit(self.body_horizontal, block_rect)
+                else:
+                    if previous_block.x == -1 and next_block.y == -1 or previous_block.y == -1 and next_block.x == -1:
+                        self.app.screen.blit(self.body_tl, block_rect)
+                    elif previous_block.x == -1 and next_block.y == 1 or previous_block.y == 1 and next_block.x == -1:
+                        self.app.screen.blit(self.body_bl, block_rect)
+                    elif previous_block.x == 1 and next_block.y == -1 or previous_block.y == -1 and next_block.x == 1:
+                        self.app.screen.blit(self.body_tr, block_rect)
+                    elif previous_block.x == 1 and next_block.y == 1 or previous_block.y == 1 and next_block.x == 1:
+                        self.app.screen.blit(self.body_br, block_rect)
+
+    def update(self):
+        self.update_head_graphics()
+        self.update_tail_graphics()
+        self.move()
+        self.collision()
+        self.eat()
+
+    def update_head_graphics(self):
+        head_relation = self.body[1] - self.body[0]
+        if head_relation == Vector2(1, 0):
+            self.head = self.head_left
+        elif head_relation == Vector2(-1, 0):
+            self.head = self.head_right
+        elif head_relation == Vector2(0, 1):
+            self.head = self.head_up
+        elif head_relation == Vector2(0, -1):
+            self.head = self.head_down
+
+    def update_tail_graphics(self):
+        tail_relation = self.body[-2] - self.body[-1]
+        if tail_relation == Vector2(1, 0):
+            self.tail = self.tail_left
+        elif tail_relation == Vector2(-1, 0):
+            self.tail = self.tail_right
+        elif tail_relation == Vector2(0, 1):
+            self.tail = self.tail_up
+        elif tail_relation == Vector2(0, -1):
+            self.tail = self.tail_down
+
+    def move(self):
+        if self.new_block == True:
+            body_copy = self.body[:]
+            body_copy.insert(0, body_copy[0] + self.direction)
+            self.body = body_copy[:]
+            self.new_block = False
+        else:
+            body_copy = self.body[:-1]
+            body_copy.insert(0, body_copy[0] + self.direction)
+            self.body = body_copy[:]
+
+    def add_block(self):
+        self.new_block = True
+
+    def reset(self):
+        self.body = [Vector2(5, 10), Vector2(4, 10), Vector2(3, 10)]
+        self.direction = Vector2(1, 0)
+
+    def eat(self):
+        if self.app.apple.pos == self.body[0]:
+            self.app.apple.randomize()
+            self.add_block()
+
+        for block in self.body[1:]:
+            if block == self.app.apple.pos:
+                self.app.apple.randomize()
+
+    def collision(self):
+        if not 0 <= self.body[0].x < CELL_NUMBER or not 0 <= self.body[0].y < CELL_NUMBER:
+            self.app.state = "end_game"
+            self.app.active_buttons = self.app.end_game.end_game_buttons
+        for block in self.body[1:]:
+            if block == self.body[0]:
+               self.app.state = "end_game"
+               self.app.active_buttons = self.app.end_game.end_game_buttons

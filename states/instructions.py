@@ -48,7 +48,7 @@ class Instructions:
     def make_instructions_buttons(self):
         # MAKE INSTRUCTIONS BUTTONS
         instructions_intro_button = Button(self.app,
-                                        [25, 525],
+                                        [20, 805],
                                         225,
                                         50,
                                         COLORS.get("yellow"),
@@ -59,7 +59,7 @@ class Instructions:
         self.instructions_buttons.append(instructions_intro_button)
 
         instructions_quit_button = Button(self.app,
-                                   [450, 525],
+                                   [655, 805],
                                    125,
                                    50,
                                    COLORS.get("red"),
@@ -72,37 +72,37 @@ class Instructions:
     def make_instructions_texts(self):
         # MAKE INSTRUCTIONS TEXT
         head_txt = Text(self.app,
-                        [140, 25],
+                        [240, 25],
                         TEXT_SIZE.get("xlarge"),
                         "Nastavení",
-                        COLORS.get("yellow"))
+                        COLORS.get("light_yellow"))
         self.text_list.append(head_txt)
         controls_txt = Text(self.app,
-                            [225, 125],
+                            [325, 125],
                             TEXT_SIZE.get("medium"),
                             "Ovládání",
-                            COLORS.get("green"))
+                            COLORS.get("light_green"))
         self.text_list.append(controls_txt)
         player_1_txt = Text(self.app,
-                            [215, 200],
+                            [325, 200],
                             TEXT_SIZE.get("small"),
                             "Hráč 1 - šipky",
                             COLORS.get("black"))
         self.text_list.append(player_1_txt)
         pause_txt = Text(self.app,
-                         [250, 250],
+                         [355, 250],
                          TEXT_SIZE.get("small"),
                          "Pauza - P",
                          COLORS.get("black"))
         self.text_list.append(pause_txt)
         back_to_menu_txt = Text(self.app,
-                                     [200, 300],
+                                     [300, 300],
                                      TEXT_SIZE.get("small"),
                                      "Zpět do menu - M",
                                      COLORS.get("black"))
         self.text_list.append(back_to_menu_txt)
         quit_txt = Text(self.app,
-                        [250, 350],
+                        [350, 350],
                         TEXT_SIZE.get("small"),
                         "Konec - Q",
                         COLORS.get("black"))
