@@ -11,8 +11,8 @@ class Apple:
         self.randomize()
 
     def draw(self):
-        fruit_rect = pygame.Rect(int(self.pos.x * CELL_SIZE), int(self.pos.y * CELL_SIZE), CELL_SIZE, CELL_SIZE)
-        self.app.screen.blit(self.img, fruit_rect)
+        apple_rect = pygame.Rect(int(self.pos.x * CELL_SIZE), int(self.pos.y * CELL_SIZE), CELL_SIZE, CELL_SIZE)
+        self.app.screen.blit(self.img, apple_rect)
 
     # pygame.draw.rect(screen,(126,166,114),fruit_rect)
 

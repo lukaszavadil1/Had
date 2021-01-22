@@ -36,7 +36,7 @@ class Pause:
         self.app.snake.direction = Vector2(0, 0)
         for button in self.app.active_buttons:
             button.update()
-        self.app.game_window.update()
+        # self.app.game_window.update()
 
     def pause_draw(self):
         # PAUSE STATE DRAW

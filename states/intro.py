@@ -5,6 +5,7 @@ class Intro:
     def __init__(self, app):
         self.intro_buttons = []
         self.app = app
+        self.bg = pygame.image.load("imgs/intro_bg.png")
 
     def intro_events(self):
         # INTRO EVENT HANDLING

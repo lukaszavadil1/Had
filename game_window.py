@@ -18,7 +18,7 @@ class GameWindow:
         self.app.apple.draw()
 
     def draw_game_window(self):
-        # WINDOW
+        # WINDOW GENERATE
         for row in range(CELL_NUMBER):
             if row % 2 == 0:
                 for col in range(CELL_NUMBER):
@@ -30,6 +30,7 @@ class GameWindow:
                     if col % 2 != 0:
                         grass_rect = pygame.Rect(col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE)
                         pygame.draw.rect(self.app.screen, COLORS.get("grass"), grass_rect)
+        # GAME WINDOW BORDER
         pygame.draw.rect(self.app.screen,
                          COLORS.get("black"),
                          (self.pos[0], self.pos[1], CELL_NUMBER * CELL_SIZE,

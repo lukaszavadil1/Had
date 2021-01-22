@@ -28,7 +28,8 @@ class Interlude:
 
     def interlude_update(self):
         # INTERLUDE STATE UPDATE
-        self.app.game_window.update()
+        # self.app.game_window.update()
+        pass
 
     def interlude_draw(self):
         # INTERLUDE STATE DRAW

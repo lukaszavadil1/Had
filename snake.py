@@ -33,6 +33,7 @@ class Snake:
         self.update_tail_graphics()
 
         for index, block in enumerate(self.body):
+            print(self.body)
             x_pos = int(block.x * CELL_SIZE)
             y_pos = int(block.y * CELL_SIZE)
             block_rect = pygame.Rect(x_pos, y_pos, CELL_SIZE, CELL_SIZE)
@@ -103,7 +104,7 @@ class Snake:
 
     def reset(self):
         self.body = [Vector2(5, 10), Vector2(4, 10), Vector2(3, 10)]
-        self.direction = Vector2(0, 0)
+        self.direction = Vector2(1, 0)
 
     def eat(self):
         if self.app.apple.pos == self.body[0]:
@@ -120,5 +121,5 @@ class Snake:
             self.app.active_buttons = self.app.end_game.end_game_buttons
         for block in self.body[1:]:
             if block == self.body[0]:
-               # self.app.state = "end_game"
-               pass
+               self.app.state = "end_game"
+               self.app.active_buttons = self.app.end_game.end_game_buttons
