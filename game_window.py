@@ -10,11 +10,13 @@ class GameWindow:
     def update(self):
         # WINDOW UPDATE
         self.app.snake.update()
+        self.app.snake_2.update()
 
     def draw(self):
         # WINDOW DRAW
         self.draw_game_window()
         self.app.snake.draw()
+        self.app.snake_2.draw()
         self.app.apple.draw()
 
     def draw_game_window(self):

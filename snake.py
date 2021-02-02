@@ -4,29 +4,46 @@ from apple import *
 
 
 class Snake:
-    def __init__(self, app):
+    def __init__(self, app, body, direction, new_block, color):
         self.app = app
-        self.body = [Vector2(5, 10), Vector2(4, 10), Vector2(3, 10)]
-        self.direction = Vector2(0, 0)
-        self.new_block = False
+        self.body = body
+        self.start_pos = self.body
+        self.direction = direction
+        self.new_block = new_block
+        self.color = color
 
-        self.head_up = pygame.image.load('imgs/head_up.png').convert_alpha()
-        self.head_down = pygame.image.load('imgs/head_down.png').convert_alpha()
-        self.head_right = pygame.image.load('imgs/head_right.png').convert_alpha()
-        self.head_left = pygame.image.load('imgs/head_left.png').convert_alpha()
-
-        self.tail_up = pygame.image.load('imgs/tail_up.png').convert_alpha()
-        self.tail_down = pygame.image.load('imgs/tail_down.png').convert_alpha()
-        self.tail_right = pygame.image.load('imgs/tail_right.png').convert_alpha()
-        self.tail_left = pygame.image.load('imgs/tail_left.png').convert_alpha()
-
-        self.body_vertical = pygame.image.load('imgs/body_vertical.png').convert_alpha()
-        self.body_horizontal = pygame.image.load('imgs/body_horizontal.png').convert_alpha()
-
-        self.body_tr = pygame.image.load('imgs/body_tr.png').convert_alpha()
-        self.body_tl = pygame.image.load('imgs/body_tl.png').convert_alpha()
-        self.body_br = pygame.image.load('imgs/body_br.png').convert_alpha()
-        self.body_bl = pygame.image.load('imgs/body_bl.png').convert_alpha()
+        # SNAKE 1
+        if self.color == "green":
+            self.head_up = pygame.image.load('imgs/head_up.png').convert_alpha()
+            self.head_down = pygame.image.load('imgs/head_down.png').convert_alpha()
+            self.head_right = pygame.image.load('imgs/head_right.png').convert_alpha()
+            self.head_left = pygame.image.load('imgs/head_left.png').convert_alpha()
+            self.tail_up = pygame.image.load('imgs/tail_up.png').convert_alpha()
+            self.tail_down = pygame.image.load('imgs/tail_down.png').convert_alpha()
+            self.tail_right = pygame.image.load('imgs/tail_right.png').convert_alpha()
+            self.tail_left = pygame.image.load('imgs/tail_left.png').convert_alpha()
+            self.body_vertical = pygame.image.load('imgs/body_vertical.png').convert_alpha()
+            self.body_horizontal = pygame.image.load('imgs/body_horizontal.png').convert_alpha()
+            self.body_tr = pygame.image.load('imgs/body_tr.png').convert_alpha()
+            self.body_tl = pygame.image.load('imgs/body_tl.png').convert_alpha()
+            self.body_br = pygame.image.load('imgs/body_br.png').convert_alpha()
+            self.body_bl = pygame.image.load('imgs/body_bl.png').convert_alpha()
+        # SNAKE 2
+        else:
+            self.head_up = pygame.image.load('imgs/head_up_2.png').convert_alpha()
+            self.head_down = pygame.image.load('imgs/head_down_2.png').convert_alpha()
+            self.head_right = pygame.image.load('imgs/head_right_2.png').convert_alpha()
+            self.head_left = pygame.image.load('imgs/head_left_2.png').convert_alpha()
+            self.tail_up = pygame.image.load('imgs/tail_up_2.png').convert_alpha()
+            self.tail_down = pygame.image.load('imgs/tail_down_2.png').convert_alpha()
+            self.tail_right = pygame.image.load('imgs/tail_right_2.png').convert_alpha()
+            self.tail_left = pygame.image.load('imgs/tail_left_2.png').convert_alpha()
+            self.body_vertical = pygame.image.load('imgs/body_vertical_2.png').convert_alpha()
+            self.body_horizontal = pygame.image.load('imgs/body_horizontal_2.png').convert_alpha()
+            self.body_tr = pygame.image.load('imgs/body_tr_2.png').convert_alpha()
+            self.body_tl = pygame.image.load('imgs/body_tl_2.png').convert_alpha()
+            self.body_br = pygame.image.load('imgs/body_br_2.png').convert_alpha()
+            self.body_bl = pygame.image.load('imgs/body_bl_2.png').convert_alpha()
 
     def draw(self):
         self.update_head_graphics()
@@ -103,7 +120,7 @@ class Snake:
         self.new_block = True
 
     def reset(self):
-        self.body = [Vector2(5, 10), Vector2(4, 10), Vector2(3, 10)]
+        self.body = self.start_pos
         self.direction = Vector2(1, 0)
 
     def eat(self):
@@ -121,5 +138,5 @@ class Snake:
             self.app.active_buttons = self.app.end_game.end_game_buttons
         for block in self.body[1:]:
             if block == self.body[0]:
-               self.app.state = "end_game"
-               self.app.active_buttons = self.app.end_game.end_game_buttons
+                self.app.state = "end_game"
+                self.app.active_buttons = self.app.end_game.end_game_buttons

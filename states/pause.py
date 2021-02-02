@@ -33,7 +33,6 @@ class Pause:
 
     def pause_update(self):
         # PAUSE STATE UPDATE
-        self.app.snake.direction = Vector2(0, 0)
         for button in self.app.active_buttons:
             button.update()
         # self.app.game_window.update()

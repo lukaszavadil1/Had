@@ -24,6 +24,7 @@ class Play:
                         pass
             if event.type == pygame.KEYDOWN:  # ON KEY DOWN
                 # BASIC MOVEMENT
+                # SNAKE 1
                 if event.key == pygame.K_UP:
                     if self.app.snake.direction.y != 1:
                         self.app.snake.direction = Vector2(0, -1)
@@ -36,6 +37,19 @@ class Play:
                 if event.key == pygame.K_LEFT:
                     if self.app.snake.direction.x != 1:
                         self.app.snake.direction = Vector2(-1, 0)
+                # SNAKE 2
+                if event.key == pygame.K_w:
+                    if self.app.snake_2.direction.y != 1:
+                        self.app.snake_2.direction = Vector2(0, -1)
+                if event.key == pygame.K_d:
+                    if self.app.snake_2.direction.x != -1:
+                        self.app.snake_2.direction = Vector2(1, 0)
+                if event.key == pygame.K_s:
+                    if self.app.snake_2.direction.y != -1:
+                        self.app.snake_2.direction = Vector2(0, 1)
+                if event.key == pygame.K_a:
+                    if self.app.snake_2.direction.x != 1:
+                        self.app.snake_2.direction = Vector2(-1, 0)
                 # KEY SHORTCUTS
                 if event.key == pygame.K_q:
                     self.app.running = False

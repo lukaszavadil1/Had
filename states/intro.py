@@ -34,6 +34,7 @@ class Intro:
     def intro_interlude(self):
         # FROM INTRO STATE TO PLAY
         self.app.snake.reset()
+        self.app.snake_2.reset()
         self.app.state = "interlude"
 
     def intro_instructions(self):
