@@ -14,7 +14,9 @@ COLORS = {"bgcolor": (0, 155, 0),
           "yellow": (200, 200, 0),
           "light_yellow": (255, 255, 0),
           "white": (255, 255, 255),
-          "grass": (0, 75, 0)
+          "grass": (0, 75, 0),
+          "light_purple": (245, 0, 245),
+          "purple": (145, 0, 145)
           }
 # TEXT SIZES
 TEXT_SIZE = {"xsmall": 18,

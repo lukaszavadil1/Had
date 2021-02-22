@@ -11,6 +11,7 @@ class Snake:
         self.direction = direction
         self.new_block = new_block
         self.color = color
+        self.mp_disable = True
 
         # SNAKE 1
         if self.color == "green":

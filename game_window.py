@@ -10,13 +10,19 @@ class GameWindow:
     def update(self):
         # WINDOW UPDATE
         self.app.snake.update()
-        self.app.snake_2.update()
+        if not self.app.snake_2.mp_disable:
+            self.app.snake_2.update()
+        else:
+            pass
 
     def draw(self):
         # WINDOW DRAW
         self.draw_game_window()
         self.app.snake.draw()
-        self.app.snake_2.draw()
+        if not self.app.snake_2.mp_disable:
+            self.app.snake_2.draw()
+        else:
+            pass
         self.app.apple.draw()
 
     def draw_game_window(self):

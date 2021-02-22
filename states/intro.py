@@ -31,10 +31,18 @@ class Intro:
         for button in self.app.active_buttons:
             button.draw()
 
-    def intro_interlude(self):
+    def intro_interlude_p1(self):
         # FROM INTRO STATE TO PLAY
         self.app.snake.reset()
         self.app.snake_2.reset()
+        self.app.snake_2.mp_disable = True
+        self.app.state = "interlude"
+
+    def intro_interlude_p2(self):
+        # FROM INTRO STATE TO PLAY
+        self.app.snake.reset()
+        self.app.snake_2.reset()
+        self.app.snake_2.mp_disable = False
         self.app.state = "interlude"
 
     def intro_instructions(self):
@@ -47,16 +55,27 @@ class Intro:
 
     def make_intro_buttons(self):
         # MAKE INTRO BUTTONS
-        intro_interlude_button = Button(self.app,
-                                        [(SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2) - 100],
+        intro_interlude_p1_button = Button(self.app,
+                                        [(SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2) - 225],
                                         200,
                                         75,
                                         COLORS.get("dark_green"),
                                         TEXT_SIZE.get("normal"),
                                         hover_color=COLORS.get("green"),
-                                        action=self.intro_interlude,
-                                        text="HRÁT")
-        self.intro_buttons.append(intro_interlude_button)
+                                        action=self.intro_interlude_p1,
+                                        text="1 PLAYER")
+        self.intro_buttons.append(intro_interlude_p1_button)
+
+        intro_interlude_p2_button = Button(self.app,
+                                        [(SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2) - 100],
+                                        200,
+                                        75,
+                                        COLORS.get("purple"),
+                                        TEXT_SIZE.get("normal"),
+                                        hover_color=COLORS.get("light_purple"),
+                                        action=self.intro_interlude_p2,
+                                        text="2 PLAYERS")
+        self.intro_buttons.append(intro_interlude_p2_button)
 
         intro_instructions_button = Button(self.app,
                                            [(SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2) + 25],

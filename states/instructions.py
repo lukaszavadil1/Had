@@ -89,20 +89,26 @@ class Instructions:
                             "Hráč 1 - šipky",
                             COLORS.get("black"))
         self.text_list.append(player_1_txt)
+        player_2_txt = Text(self.app,
+                            [315, 250],
+                            TEXT_SIZE.get("small"),
+                            "Hráč 2 - WASD",
+                            COLORS.get("black"))
+        self.text_list.append(player_2_txt)
         pause_txt = Text(self.app,
-                         [355, 250],
+                         [355, 300],
                          TEXT_SIZE.get("small"),
                          "Pauza - P",
                          COLORS.get("black"))
         self.text_list.append(pause_txt)
         back_to_menu_txt = Text(self.app,
-                                     [300, 300],
+                                     [310, 350],
                                      TEXT_SIZE.get("small"),
                                      "Zpět do menu - M",
                                      COLORS.get("black"))
         self.text_list.append(back_to_menu_txt)
         quit_txt = Text(self.app,
-                        [350, 350],
+                        [350, 400],
                         TEXT_SIZE.get("small"),
                         "Konec - Q",
                         COLORS.get("black"))
