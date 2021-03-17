@@ -1,12 +1,19 @@
-from button import *
-from text import *
+from components.button import *
+from components.text import *
+from components.difficulty import *
 
 
 class Instructions:
     def __init__(self, app):
-        self.instructions_buttons = []
         self.app = app
+        self.instructions_buttons = []
         self.text_list = []
+        self.difficulties = []
+        self.snake_easy = pygame.image.load('imgs/difficulties/snake_easy_test.png')
+        self.snake_medium = pygame.image.load('imgs/difficulties/snake_medium_test.png')
+        self.snake_hard = pygame.image.load('imgs/difficulties/snake_hard_test.png')
+        self.active_difficulty = "medium"
+
 
     def instructions_events(self):
         # INSTRUCTIONS EVENT HANDLING
@@ -28,6 +35,8 @@ class Instructions:
             button.update()
         for text in self.text_list:
             text.update()
+        for difficulty in self.difficulties:
+            difficulty.update()
 
     def instructions_draw(self):
         # INSTRUCTIONS STATE DRAW
@@ -35,6 +44,16 @@ class Instructions:
             button.draw()
         for text in self.text_list:
             text.draw()
+        """for difficulty in self.difficulties:
+            difficulty.draw()"""
+        if self.active_difficulty == "easy":
+            self.difficulties[0].draw()
+        elif self.active_difficulty == "medium":
+            self.difficulties[1].draw()
+        elif self.active_difficulty == "hard":
+            self.difficulties[2].draw()
+        else:
+            pass
 
     def instructions_intro(self):
         # FROM INSTRUCTIONS STATE TO INTRO
@@ -44,6 +63,15 @@ class Instructions:
     def instructions_quit(self):
         # QUIT FROM INSTRUCTIONS STATE
         self.app.running = False
+
+    def set_difficulty_easy(self):
+        self.active_difficulty = "easy"
+
+    def set_difficulty_medium(self):
+        self.active_difficulty = "medium"
+
+    def set_difficulty_hard(self):
+        self.active_difficulty = "hard"
 
     def make_instructions_buttons(self):
         # MAKE INSTRUCTIONS BUTTONS
@@ -68,6 +96,39 @@ class Instructions:
                                    action=self.instructions_quit,
                                    text="KONEC")
         self.instructions_buttons.append(instructions_quit_button)
+
+        instructions_difficulty_easy_button = Button(self.app,
+                                          [50, 600],
+                                          225,
+                                          60,
+                                          COLORS.get("yellow"),
+                                          TEXT_SIZE.get("small"),
+                                          hover_color=COLORS.get("light_yellow"),
+                                          action=self.set_difficulty_easy,
+                                          text="MÍRUMILOVNÁ")
+        self.instructions_buttons.append(instructions_difficulty_easy_button)
+
+        instructions_difficulty_medium_button = Button(self.app,
+                                                     [300, 600],
+                                                     225,
+                                                     60,
+                                                     COLORS.get("orange"),
+                                                     TEXT_SIZE.get("small"),
+                                                     hover_color=COLORS.get("light_orange"),
+                                                     action=self.set_difficulty_medium,
+                                                     text="ZLATEJ STŘED")
+        self.instructions_buttons.append(instructions_difficulty_medium_button)
+
+        instructions_difficulty_hard_button = Button(self.app,
+                                                     [550, 600],
+                                                     225,
+                                                     60,
+                                                     COLORS.get("red"),
+                                                     TEXT_SIZE.get("small"),
+                                                     hover_color=COLORS.get("light_red"),
+                                                     action=self.set_difficulty_hard,
+                                                     text="PYTHONOVSKÁ")
+        self.instructions_buttons.append(instructions_difficulty_hard_button)
 
     def make_instructions_texts(self):
         # MAKE INSTRUCTIONS TEXT
@@ -113,3 +174,27 @@ class Instructions:
                         "Konec - Q",
                         COLORS.get("black"))
         self.text_list.append(quit_txt)
+
+    def make_difficulty_snakes(self):
+        easy = Difficulty(self.app,
+                          [130, 510],
+                          self.snake_easy)
+        self.difficulties.append(easy)
+        medium = Difficulty(self.app,
+                            [380, 510],
+                            self.snake_medium)
+        self.difficulties.append(medium)
+        hard = Difficulty(self.app,
+                          [630, 510],
+                          self.snake_hard)
+        self.difficulties.append(hard)
+
+    def check_fps(self):
+        if self.app.instructions.active_difficulty == "easy":
+            self.app.fps = 5
+        elif self.app.instructions.active_difficulty == "medium":
+            self.app.fps = 10
+        elif self.app.instructions.active_difficulty == "hard":
+            self.app.fps = 15
+        else:
+            pass

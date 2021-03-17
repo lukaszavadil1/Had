@@ -1,5 +1,5 @@
 # FRAMES PER SECOND
-FPS = 10
+FPS = 15
 # SCREEN RESOLUTION
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 600
@@ -16,7 +16,9 @@ COLORS = {"bgcolor": (0, 155, 0),
           "white": (255, 255, 255),
           "grass": (0, 75, 0),
           "light_purple": (245, 0, 245),
-          "purple": (145, 0, 145)
+          "purple": (145, 0, 145),
+          "orange": (255, 140, 0),
+          "light_orange": (255, 165, 0)
           }
 # TEXT SIZES
 TEXT_SIZE = {"xsmall": 18,

@@ -1,7 +1,7 @@
 import sys
 from game_window import *
-from snake import *
-from apple import *
+from entities.snake import *
+from entities.apple import *
 from states import play, intro, state_machine, pause, interlude, instructions, end_game
 
 
@@ -11,6 +11,7 @@ class App:
         self.clock = pygame.time.Clock()
         self.screen = pygame.display.set_mode((CELL_NUMBER * CELL_SIZE, (CELL_NUMBER * CELL_SIZE)+75))
         self.running = True
+        self.fps = FPS
         self.state = "intro"
         self.state_machine = state_machine.StateMachine(self)
         self.icon = pygame.image.load("imgs/logo.png")
@@ -29,6 +30,7 @@ class App:
         self.active_buttons = self.intro.intro_buttons
         self.make_buttons()
         self.make_texts()
+        self.make_difficulty()
 
     @staticmethod
     def quit():
@@ -41,7 +43,9 @@ class App:
             self.state_machine.get_events()
             self.state_machine.update()
             self.state_machine.draw()
-            self.clock.tick(FPS)
+            self.clock.tick(self.fps)
+            print(self.fps)
+            print(self.instructions.active_difficulty)
         quit()
 
     def make_buttons(self):
@@ -55,3 +59,6 @@ class App:
     def make_texts(self):
         self.instructions.make_instructions_texts()
         self.end_game.make_end_game_texts()
+
+    def make_difficulty(self):
+        self.instructions.make_difficulty_snakes()

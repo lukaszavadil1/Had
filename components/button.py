@@ -41,7 +41,7 @@ class Button:
         if self.action != None:
             self.action()
         else:
-            pass
+            self.color = self.hovered
 
     def show_text(self):
         # TEXT FONT, CENTER AND BLIT

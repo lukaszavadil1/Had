@@ -1,6 +1,5 @@
-from button import *
+from components.button import *
 from settings import *
-from pygame.math import Vector2
 
 
 class Pause:
@@ -55,6 +54,7 @@ class Pause:
     def pause_interlude(self):
         # FROM PAUSE STATE TO PLAY
         self.app.state = "interlude"
+        self.app.instructions.check_fps()
 
     def make_pause_buttons(self):
         # MAKE PAUSE BUTTONS

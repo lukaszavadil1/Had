@@ -1,4 +1,4 @@
-from button import *
+from components.button import *
 from pygame.math import Vector2
 
 
@@ -19,7 +19,7 @@ class Play:
                 # BUTTON CLICK
                 for button in self.play_buttons:
                     if button.hovered:
-                        button.Button.click()
+                        button.click()
                     else:
                         pass
             if event.type == pygame.KEYDOWN:  # ON KEY DOWN
@@ -56,9 +56,11 @@ class Play:
                 if event.key == pygame.K_p:
                     self.app.state = "pause"
                     self.app.active_buttons = self.app.pause.pause_buttons
+                    self.app.fps = FPS
                 if event.key == pygame.K_m:
                     self.app.state = "intro"
                     self.app.active_buttons = self.app.intro.intro_buttons
+                    self.app.fps = FPS
 
     def play_update(self):
         # PLAY STATE UPDATE
@@ -80,11 +82,13 @@ class Play:
         # FROM PLAY STATE TO INTRO
         self.app.state = "intro"
         self.app.active_buttons = self.app.intro.intro_buttons
+        self.app.fps = FPS
 
     def play_pause(self):
         # FROM PLAY STATE TO PAUSE
         self.app.state = "pause"
         self.app.active_buttons = self.app.pause.pause_buttons
+        self.app.fps = FPS
 
     def make_play_buttons(self):
         # MAKE PLAY BUTTONS

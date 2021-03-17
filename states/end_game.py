@@ -1,5 +1,5 @@
-from button import *
-from text import *
+from components.button import *
+from components.text import *
 
 
 class EndGame:

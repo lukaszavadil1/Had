@@ -1,11 +1,11 @@
-from button import *
+from components.button import *
 
 
 class Intro:
     def __init__(self, app):
         self.intro_buttons = []
         self.app = app
-        self.bg = pygame.image.load("imgs/intro_bg.png")
+        self.bg = pygame.image.load("imgs/menu.png")
 
     def intro_events(self):
         # INTRO EVENT HANDLING
@@ -63,7 +63,7 @@ class Intro:
                                         TEXT_SIZE.get("normal"),
                                         hover_color=COLORS.get("green"),
                                         action=self.intro_interlude_p1,
-                                        text="1 PLAYER")
+                                        text="1 HRÁČ")
         self.intro_buttons.append(intro_interlude_p1_button)
 
         intro_interlude_p2_button = Button(self.app,
@@ -74,7 +74,7 @@ class Intro:
                                         TEXT_SIZE.get("normal"),
                                         hover_color=COLORS.get("light_purple"),
                                         action=self.intro_interlude_p2,
-                                        text="2 PLAYERS")
+                                        text="2 HRÁČI")
         self.intro_buttons.append(intro_interlude_p2_button)
 
         intro_instructions_button = Button(self.app,
@@ -85,7 +85,7 @@ class Intro:
                                            TEXT_SIZE.get("normal"),
                                            hover_color=COLORS.get("light_yellow"),
                                            action=self.intro_instructions,
-                                           text="OVLÁDÁNÍ")
+                                           text="NASTAVENÍ")
         self.intro_buttons.append(intro_instructions_button)
 
         intro_quit_button = Button(self.app,
