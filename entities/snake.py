@@ -76,8 +76,6 @@ class Snake:
                         self.app.screen.blit(self.body_br, block_rect)
 
     def update(self):
-        self.update_head_graphics()
-        self.update_tail_graphics()
         self.move()
         self.collision()
         self.eat()

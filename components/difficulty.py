@@ -14,12 +14,3 @@ class Difficulty:
         # HEAD BLIT
         self.app.screen.blit(self.type, self.pos)
 
-    def check_fps(self):
-        if self.app.instructions.active_difficulty == "easy":
-            self.fps = 5
-        elif self.app.instructions.active_difficulty == "medium":
-            self.fps = 10
-        elif self.app.instructions.active_difficulty == "hard":
-            self.fps = 15
-        else:
-            pass
