@@ -5,10 +5,12 @@ from settings import *
 
 
 class Apple:
-    def __init__(self, app):
+    def __init__(self, app, x, y):
         self.app = app
         self.img = pygame.image.load("imgs/apple.png")
-        self.randomize()
+        self.x = x
+        self.y = y
+        self.pos = Vector2(self.x, self.y)
 
     def draw(self):
         apple_rect = pygame.Rect(int(self.pos.x * CELL_SIZE), int(self.pos.y * CELL_SIZE), CELL_SIZE, CELL_SIZE)

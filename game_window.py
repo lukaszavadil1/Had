@@ -23,7 +23,8 @@ class GameWindow:
             self.app.snake_2.draw()
         else:
             pass
-        self.app.apple.draw()
+        for apple in self.app.apples:
+            apple.draw()
 
     def draw_game_window(self):
         # WINDOW GENERATE

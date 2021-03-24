@@ -121,13 +121,15 @@ class Snake:
         self.direction = Vector2(1, 0)
 
     def eat(self):
-        if self.app.apple.pos == self.body[0]:
-            self.app.apple.randomize()
-            self.add_block()
+        for apple in self.app.apples:
+            if apple.pos == self.body[0]:
+                apple.randomize()
+                self.add_block()
 
         for block in self.body[1:]:
-            if block == self.app.apple.pos:
-                self.app.apple.randomize()
+            for apple in self.app.apples:
+                if block == apple.pos:
+                    apple.randomize()
 
     def collision(self):
         if not 0 <= self.body[0].x < CELL_NUMBER or not 0 <= self.body[0].y < CELL_NUMBER:

@@ -20,6 +20,8 @@ class StateMachine:
             self.app.instructions.instructions_events()
         if self.app.state == "end_game":
             self.app.end_game.end_game_events()
+        if self.app.state == "game_modes":
+            self.app.game_modes.game_modes_events()
 
     def update(self):
         # MAIN UPDATE
@@ -35,6 +37,8 @@ class StateMachine:
             self.app.instructions.instructions_update()
         if self.app.state == "end_game":
             self.app.end_game.end_game_update()
+        if self.app.state == "game_modes":
+            self.app.game_modes.game_modes_update()
 
     def draw(self):
         # MAIN DRAW
@@ -57,4 +61,7 @@ class StateMachine:
         if self.app.state == "end_game":
             self.app.screen.fill(COLORS.get("bgcolor"))
             self.app.end_game.end_game_draw()
+        if self.app.state == "game_modes":
+            self.app.screen.fill(COLORS.get("bgcolor"))
+            self.app.game_modes.game_modes_draw()
         pygame.display.update()
