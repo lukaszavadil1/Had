@@ -46,7 +46,7 @@ class GameModes:
         self.app.state = "interlude"
 
     def game_modes_apples(self):
-        self.app.apples_amount = 500
+        self.app.apples_amount = 5
         self.app.make_apples()
         self.app.mode = "apples"
         self.app.state = "interlude"

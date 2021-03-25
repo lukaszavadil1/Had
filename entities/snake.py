@@ -49,7 +49,6 @@ class Snake:
         self.update_tail_graphics()
 
         for index, block in enumerate(self.body):
-            print(self.body)
             x_pos = int(block.x * CELL_SIZE)
             y_pos = int(block.y * CELL_SIZE)
             block_rect = pygame.Rect(x_pos, y_pos, CELL_SIZE, CELL_SIZE)

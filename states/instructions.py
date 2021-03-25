@@ -98,7 +98,7 @@ class Instructions:
         self.instructions_buttons.append(instructions_quit_button)
 
         instructions_difficulty_easy_button = Button(self.app,
-                                          [50, 600],
+                                          [50, 650],
                                           225,
                                           60,
                                           COLORS.get("yellow"),
@@ -109,7 +109,7 @@ class Instructions:
         self.instructions_buttons.append(instructions_difficulty_easy_button)
 
         instructions_difficulty_medium_button = Button(self.app,
-                                                     [300, 600],
+                                                     [300, 650],
                                                      225,
                                                      60,
                                                      COLORS.get("orange"),
@@ -120,7 +120,7 @@ class Instructions:
         self.instructions_buttons.append(instructions_difficulty_medium_button)
 
         instructions_difficulty_hard_button = Button(self.app,
-                                                     [550, 600],
+                                                     [550, 650],
                                                      225,
                                                      60,
                                                      COLORS.get("red"),
@@ -138,36 +138,42 @@ class Instructions:
                         "Nastavení",
                         COLORS.get("light_yellow"))
         self.text_list.append(head_txt)
+
         controls_txt = Text(self.app,
                             [325, 125],
                             TEXT_SIZE.get("medium"),
                             "Ovládání",
                             COLORS.get("light_green"))
         self.text_list.append(controls_txt)
+
         player_1_txt = Text(self.app,
                             [325, 200],
                             TEXT_SIZE.get("small"),
                             "Hráč 1 - šipky",
                             COLORS.get("black"))
         self.text_list.append(player_1_txt)
+
         player_2_txt = Text(self.app,
                             [315, 250],
                             TEXT_SIZE.get("small"),
                             "Hráč 2 - WASD",
                             COLORS.get("black"))
         self.text_list.append(player_2_txt)
+
         pause_txt = Text(self.app,
                          [355, 300],
                          TEXT_SIZE.get("small"),
                          "Pauza - P",
                          COLORS.get("black"))
         self.text_list.append(pause_txt)
+
         back_to_menu_txt = Text(self.app,
                                      [310, 350],
                                      TEXT_SIZE.get("small"),
                                      "Zpět do menu - M",
                                      COLORS.get("black"))
         self.text_list.append(back_to_menu_txt)
+
         quit_txt = Text(self.app,
                         [350, 400],
                         TEXT_SIZE.get("small"),
@@ -175,17 +181,24 @@ class Instructions:
                         COLORS.get("black"))
         self.text_list.append(quit_txt)
 
+        difficulty_txt = Text(self.app,
+                        [260, 465],
+                        TEXT_SIZE.get("medium"),
+                        "Výběr obtížnosti",
+                        COLORS.get("red"))
+        self.text_list.append(difficulty_txt)
+
     def make_difficulty_snakes(self):
         easy = Difficulty(self.app,
-                          [130, 510],
+                          [130, 550],
                           self.snake_easy)
         self.difficulties.append(easy)
         medium = Difficulty(self.app,
-                            [380, 510],
+                            [380, 550],
                             self.snake_medium)
         self.difficulties.append(medium)
         hard = Difficulty(self.app,
-                          [630, 510],
+                          [630, 550],
                           self.snake_hard)
         self.difficulties.append(hard)
 

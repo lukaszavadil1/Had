@@ -79,6 +79,11 @@ class App:
         self.apples = []
         for num in range(self.apples_amount):
             apple = Apple(self, random.randint(0, CELL_NUMBER - 1), random.randint(0, CELL_NUMBER - 1))
-            if apple.pos not in self.snakes_start_pos:
-                self.apples.append(apple)
+            for a in self.apples:
+                if a.pos == apple.pos or apple.pos in self.snakes_start_pos:
+                    apple = Apple(self, random.randint(0, CELL_NUMBER - 1), random.randint(0, CELL_NUMBER - 1))
+                else:
+                    pass
+            self.apples.append(apple)
+
 
