@@ -54,6 +54,7 @@ class GameModes:
     def game_modes_obstacles(self):
         self.app.apples_amount = 1
         self.app.make_apples()
+        self.app.make_obstacles()
         self.app.mode = "obstacles"
         self.app.state = "interlude"
 

@@ -18,13 +18,16 @@ class GameWindow:
     def draw(self):
         # WINDOW DRAW
         self.draw_game_window()
+        if self.app.mode == "obstacles":
+            for obstacle in self.app.obstacles:
+                obstacle.draw()
+        for apple in self.app.apples:
+            apple.draw()
         self.app.snake.draw()
         if not self.app.snake_2.mp_disable:
             self.app.snake_2.draw()
         else:
             pass
-        for apple in self.app.apples:
-            apple.draw()
 
     def draw_game_window(self):
         # WINDOW GENERATE

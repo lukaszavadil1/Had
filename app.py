@@ -2,6 +2,7 @@ import sys
 from game_window import *
 from entities.snake import *
 from entities.apple import *
+from entities.obstacle import *
 from states import play, intro, state_machine, pause, interlude, instructions, end_game, game_modes
 
 
@@ -14,6 +15,7 @@ class App:
         self.running = True
         self.fps = FPS
         self.game_window = GameWindow(self)
+        self.mode = None
         # ICON
         self.icon = pygame.image.load("imgs/logo.png")
         pygame.display.set_icon(self.icon)
@@ -25,6 +27,8 @@ class App:
         self.apples_amount = 1
         self.apples = []
         self.make_apples()
+        self.obstacles_amount = 10
+        self.obstacles = []
         # STATES
         self.state = "intro"
         self.state_machine = state_machine.StateMachine(self)
@@ -35,7 +39,6 @@ class App:
         self.instructions = instructions.Instructions(self)
         self.end_game = end_game.EndGame(self)
         self.game_modes = game_modes.GameModes(self)
-        self.mode = None
         # COMPONENTS
         self.active_buttons = self.intro.intro_buttons
         self.make_buttons()
@@ -86,4 +89,18 @@ class App:
                     pass
             self.apples.append(apple)
 
+    def make_obstacles(self):
+        self.obstacles = []
+        for num in range(self.obstacles_amount):
+            obstacle = Obstacle(self, random.randint(0, CELL_NUMBER - 1), random.randint(0, CELL_NUMBER - 1))
+            for obst in self.obstacles:
+                if obst.pos == obstacle.pos or obstacle.pos in self.snakes_start_pos:
+                    obstacle = Obstacle(self, random.randint(0, CELL_NUMBER - 1), random.randint(0, CELL_NUMBER - 1))
+                else:
+                    pass
+            self.obstacles.append(obstacle)
 
+    def death(self):
+        self.state = "end_game"
+        self.active_buttons = self.end_game.end_game_buttons
+        self.fps = FPS

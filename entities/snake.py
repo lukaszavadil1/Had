@@ -132,11 +132,12 @@ class Snake:
 
     def collision(self):
         if not 0 <= self.body[0].x < CELL_NUMBER or not 0 <= self.body[0].y < CELL_NUMBER:
-            self.app.state = "end_game"
-            self.app.active_buttons = self.app.end_game.end_game_buttons
-            self.app.fps = FPS
+            self.app.death()
         for block in self.body[1:]:
+            print(block)
+            print(self.app.obstacles)
             if block == self.body[0]:
-                self.app.state = "end_game"
-                self.app.active_buttons = self.app.end_game.end_game_buttons
-                self.app.fps = FPS
+                self.app.death()
+            for obstacle in self.app.obstacles:
+                if block == obstacle.pos:
+                    self.app.death()

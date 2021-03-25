@@ -1,5 +1,6 @@
 from components.button import *
 from pygame.math import Vector2
+from entities.obstacle import *
 
 
 class Play:
@@ -131,8 +132,7 @@ class Play:
         for part in self.app.snake.body:
             for block in self.app.snake_2.body:
                 if part == block:
-                    self.app.state = "end_game"
-                    self.app.active_buttons = self.app.end_game.end_game_buttons
-                    self.app.fps = FPS
+                    self.app.death()
                 else:
                     pass
+
