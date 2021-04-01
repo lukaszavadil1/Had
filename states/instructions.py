@@ -9,9 +9,9 @@ class Instructions:
         self.instructions_buttons = []
         self.text_list = []
         self.difficulties = []
-        self.snake_easy = pygame.image.load('imgs/difficulties/snake_easy_test.png')
-        self.snake_medium = pygame.image.load('imgs/difficulties/snake_medium_test.png')
-        self.snake_hard = pygame.image.load('imgs/difficulties/snake_hard_test.png')
+        self.snake_easy = pygame.image.load('imgs/difficulties/snake_easy.png')
+        self.snake_medium = pygame.image.load('imgs/difficulties/snake_medium.png')
+        self.snake_hard = pygame.image.load('imgs/difficulties/snake_hard.png')
         self.active_difficulty = "medium"
 
 

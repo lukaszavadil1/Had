@@ -5,7 +5,6 @@ class GameModes:
     def __init__(self, app):
         self.game_modes_buttons = []
         self.app = app
-        self.bg = pygame.image.load("imgs/menu.png")
 
     def game_modes_events(self):
         # GAME MODES EVENT HANDLING
@@ -87,7 +86,7 @@ class GameModes:
                                         TEXT_SIZE.get("medium"),
                                         hover_color=COLORS.get("light_purple"),
                                         action=self.game_modes_competitive,
-                                        text="KOMPET")
+                                        text="KOMPOT")
         self.game_modes_buttons.append(game_modes_competitive_button)
 
         game_modes_apples_button = Button(self.app,
