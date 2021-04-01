@@ -54,7 +54,7 @@ class Pause:
     def pause_interlude(self):
         # FROM PAUSE STATE TO PLAY
         self.app.state = "interlude"
-        self.app.instructions.check_fps()
+        self.app.instructions.set_fps()
 
     def make_pause_buttons(self):
         # MAKE PAUSE BUTTONS

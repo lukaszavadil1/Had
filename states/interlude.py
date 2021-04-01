@@ -45,5 +45,5 @@ class Interlude:
         # FROM INTERLUDE STATE TO PLAY
         self.app.state = "play"
         self.app.active_buttons = self.app.play.play_buttons
-        self.app.instructions.check_fps()
+        self.app.instructions.set_fps()
 

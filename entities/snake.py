@@ -134,8 +134,6 @@ class Snake:
         if not 0 <= self.body[0].x < CELL_NUMBER or not 0 <= self.body[0].y < CELL_NUMBER:
             self.app.death()
         for block in self.body[1:]:
-            print(block)
-            print(self.app.obstacles)
             if block == self.body[0]:
                 self.app.death()
             for obstacle in self.app.obstacles:

@@ -202,7 +202,7 @@ class Instructions:
                           self.snake_hard)
         self.difficulties.append(hard)
 
-    def check_fps(self):
+    def set_fps(self):
         if self.app.instructions.active_difficulty == "easy":
             self.app.fps = 5
         elif self.app.instructions.active_difficulty == "medium":
