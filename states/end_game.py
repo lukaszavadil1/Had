@@ -1,5 +1,6 @@
 from components.button import *
 from components.text import *
+from components.input_box import *
 
 
 class EndGame:
@@ -7,6 +8,7 @@ class EndGame:
         self.app = app
         self.end_game_buttons = []
         self.text_list = []
+        self.inputs = []
 
     def end_game_events(self):
         # GAME OVER EVENT HANDLING
@@ -21,12 +23,9 @@ class EndGame:
                         button.click()
                     else:
                         pass
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    self.app.quit()
-                if event.key == pygame.K_m:
-                    self.app.state = "intro"
-                    self.app.active_buttons = self.app.intro.intro_buttons
+            if self.app.mode == "competitive" and self.app.mp_disable:
+                for inp in self.inputs:
+                    inp.handle_event(event)
 
     def end_game_update(self):
         # GAME OVER STATE UPDATE
@@ -34,6 +33,9 @@ class EndGame:
             text.update()
         for button in self.app.active_buttons:
             button.update()
+        if self.app.mode == "competitive" and self.app.mp_disable:
+            for inp in self.inputs:
+                inp.update()
 
     def end_game_draw(self):
         # GAME OVER STATE DRAW
@@ -41,6 +43,9 @@ class EndGame:
             text.draw()
         for button in self.app.active_buttons:
             button.draw()
+        if self.app.mode == "competitive" and self.app.mp_disable:
+            for inp in self.inputs:
+                inp.draw()
 
     def end_game_intro(self):
         # FROM GAME OVER STATE TO INTRO
@@ -51,6 +56,14 @@ class EndGame:
     def end_game_quit(self):
         # QUIT FROM GAME OVER STATE
         self.app.running = False
+
+    def make_input_box(self):
+        input_box = InputBox(self.app,
+                             170,
+                             500,
+                             140,
+                             32)
+        self.inputs.append(input_box)
 
     def make_end_game_buttons(self):
         end_game_quit_button = Button(self.app,

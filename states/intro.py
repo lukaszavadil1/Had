@@ -34,7 +34,7 @@ class Intro:
         # FROM INTRO STATE TO PLAY
         self.app.snake.reset()
         self.app.snake_2.reset()
-        self.app.snake_2.mp_disable = True
+        self.app.mp_disable = True
         self.app.state = "game_modes"
         self.app.active_buttons = self.app.game_modes.game_modes_buttons
 
@@ -42,9 +42,13 @@ class Intro:
         # FROM INTRO STATE TO PLAY
         self.app.snake.reset()
         self.app.snake_2.reset()
-        self.app.snake_2.mp_disable = False
+        self.app.mp_disable = False
         self.app.state = "game_modes"
         self.app.active_buttons = self.app.game_modes.game_modes_buttons
+
+    def intro_high_scores(self):
+        self.app.state = "high_scores"
+        self.app.active_buttons = self.app.high_scores.high_scores_buttons
 
     def intro_instructions(self):
         self.app.state = "instructions"
@@ -78,8 +82,19 @@ class Intro:
                                         text="2 HRÁČI")
         self.intro_buttons.append(intro_game_modes_p2_button)
 
-        intro_instructions_button = Button(self.app,
+        intro_high_scores_button = Button(self.app,
                                            [(SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2) + 25],
+                                           200,
+                                           75,
+                                           COLORS.get("blue"),
+                                           TEXT_SIZE.get("normal"),
+                                           hover_color=COLORS.get("light_blue"),
+                                           action=self.intro_high_scores,
+                                           text="TABULKA")
+        self.intro_buttons.append(intro_high_scores_button)
+
+        intro_instructions_button = Button(self.app,
+                                           [(SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2) + 150],
                                            200,
                                            75,
                                            COLORS.get("yellow"),
@@ -90,7 +105,7 @@ class Intro:
         self.intro_buttons.append(intro_instructions_button)
 
         intro_quit_button = Button(self.app,
-                                   [(SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2) + 150],
+                                   [(SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2) + 275],
                                    200,
                                    75,
                                    COLORS.get("red"),

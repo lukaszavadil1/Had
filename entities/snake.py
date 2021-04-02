@@ -9,7 +9,6 @@ class Snake:
         self.direction = direction
         self.new_block = new_block
         self.color = color
-        self.mp_disable = True
 
         # SNAKE 1
         if self.color == "green":
@@ -124,11 +123,13 @@ class Snake:
             if apple.pos == self.body[0]:
                 apple.randomize()
                 self.add_block()
+                self.app.score += 1
 
         for block in self.body[1:]:
             for apple in self.app.apples:
                 if block == apple.pos:
                     apple.randomize()
+
 
     def collision(self):
         if not 0 <= self.body[0].x < CELL_NUMBER or not 0 <= self.body[0].y < CELL_NUMBER:

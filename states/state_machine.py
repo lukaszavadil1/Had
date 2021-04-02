@@ -22,6 +22,8 @@ class StateMachine:
             self.app.end_game.end_game_events()
         if self.app.state == "game_modes":
             self.app.game_modes.game_modes_events()
+        if self.app.state == "high_scores":
+            self.app.high_scores.high_scores_events()
 
     def update(self):
         # MAIN UPDATE
@@ -39,6 +41,8 @@ class StateMachine:
             self.app.end_game.end_game_update()
         if self.app.state == "game_modes":
             self.app.game_modes.game_modes_update()
+        if self.app.state == "high_scores":
+            self.app.high_scores.high_scores_update()
 
     def draw(self):
         # MAIN DRAW
@@ -64,4 +68,7 @@ class StateMachine:
         if self.app.state == "game_modes":
             self.app.screen.fill(COLORS.get("bgcolor"))
             self.app.game_modes.game_modes_draw()
+        if self.app.state == "high_scores":
+            self.app.screen.fill(COLORS.get("bgcolor"))
+            self.app.high_scores.high_scores_draw()
         pygame.display.update()

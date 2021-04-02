@@ -7,7 +7,7 @@ class Instructions:
     def __init__(self, app):
         self.app = app
         self.instructions_buttons = []
-        self.text_list = []
+        self.instructions_texts = []
         self.difficulties = []
         self.snake_easy = pygame.image.load('imgs/difficulties/snake_easy.png')
         self.snake_medium = pygame.image.load('imgs/difficulties/snake_medium.png')
@@ -33,7 +33,7 @@ class Instructions:
         # INSTRUCTIONS STATE UPDATE
         for button in self.app.active_buttons:
             button.update()
-        for text in self.text_list:
+        for text in self.instructions_texts:
             text.update()
         for difficulty in self.difficulties:
             difficulty.update()
@@ -42,7 +42,7 @@ class Instructions:
         # INSTRUCTIONS STATE DRAW
         for button in self.app.active_buttons:
             button.draw()
-        for text in self.text_list:
+        for text in self.instructions_texts:
             text.draw()
         """for difficulty in self.difficulties:
             difficulty.draw()"""
@@ -137,56 +137,56 @@ class Instructions:
                         TEXT_SIZE.get("xlarge"),
                         "Nastavení",
                         COLORS.get("light_yellow"))
-        self.text_list.append(head_txt)
+        self.instructions_texts.append(head_txt)
 
         controls_txt = Text(self.app,
                             [325, 125],
                             TEXT_SIZE.get("medium"),
                             "Ovládání",
                             COLORS.get("light_green"))
-        self.text_list.append(controls_txt)
+        self.instructions_texts.append(controls_txt)
 
         player_1_txt = Text(self.app,
                             [325, 200],
                             TEXT_SIZE.get("small"),
                             "Hráč 1 - šipky",
                             COLORS.get("black"))
-        self.text_list.append(player_1_txt)
+        self.instructions_texts.append(player_1_txt)
 
         player_2_txt = Text(self.app,
                             [315, 250],
                             TEXT_SIZE.get("small"),
                             "Hráč 2 - WASD",
                             COLORS.get("black"))
-        self.text_list.append(player_2_txt)
+        self.instructions_texts.append(player_2_txt)
 
         pause_txt = Text(self.app,
                          [355, 300],
                          TEXT_SIZE.get("small"),
                          "Pauza - P",
                          COLORS.get("black"))
-        self.text_list.append(pause_txt)
+        self.instructions_texts.append(pause_txt)
 
         back_to_menu_txt = Text(self.app,
                                      [310, 350],
                                      TEXT_SIZE.get("small"),
                                      "Zpět do menu - M",
                                      COLORS.get("black"))
-        self.text_list.append(back_to_menu_txt)
+        self.instructions_texts.append(back_to_menu_txt)
 
         quit_txt = Text(self.app,
                         [350, 400],
                         TEXT_SIZE.get("small"),
                         "Konec - Q",
                         COLORS.get("black"))
-        self.text_list.append(quit_txt)
+        self.instructions_texts.append(quit_txt)
 
         difficulty_txt = Text(self.app,
                         [260, 465],
                         TEXT_SIZE.get("medium"),
                         "Výběr obtížnosti",
                         COLORS.get("red"))
-        self.text_list.append(difficulty_txt)
+        self.instructions_texts.append(difficulty_txt)
 
     def make_difficulty_snakes(self):
         easy = Difficulty(self.app,

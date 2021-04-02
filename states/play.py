@@ -129,10 +129,11 @@ class Play:
         self.play_buttons.append(play_pause_button)
 
     def friendly_fire(self):
-        for part in self.app.snake.body:
-            for block in self.app.snake_2.body:
-                if part == block:
-                    self.app.death()
-                else:
-                    pass
+        if not self.app.mp_disable:
+            for part in self.app.snake.body:
+                for block in self.app.snake_2.body:
+                    if part == block:
+                        self.app.death()
+                    else:
+                        pass
 

@@ -18,7 +18,9 @@ COLORS = {"bgcolor": (0, 155, 0),
           "light_purple": (245, 0, 245),
           "purple": (145, 0, 145),
           "orange": (255, 140, 0),
-          "light_orange": (255, 165, 0)
+          "light_orange": (255, 165, 0),
+          "blue": (0, 0, 139),
+          "light_blue": (0, 0, 255)
           }
 # TEXT SIZES
 TEXT_SIZE = {"xsmall": 18,
@@ -35,4 +37,6 @@ APPLE_SIZE = 32
 CELL_NUMBER = 20
 CELL_SIZE = 40
 GAME_WINDOW_BORDER = 2
+SCORES_FILE = "scores.txt"
+HIGH_SCORE_AMOUNT = 10
 
