@@ -1,4 +1,5 @@
 from components.button import *
+from components.text import *
 from pygame.math import Vector2
 from entities.obstacle import *
 
@@ -8,6 +9,8 @@ class Play:
         self.play_buttons = []
         self.app = app
         self.snake = self.app.snake
+        self.font = pygame.font.SysFont("comicsansms", TEXT_SIZE.get("small"))
+        self.player_1 = pygame.image.load('imgs/players/player_1.png')
 
     def play_events(self):
         # PLAY EVENT HANDLING
@@ -76,6 +79,8 @@ class Play:
         self.app.game_window.draw()
         for button in self.app.active_buttons:
             button.draw()
+        if self.app.mode == "competitive" and self.app.mp_disable:
+            self.score_update()
 
     def play_quit(self):
         # QUIT FROM PLAY STATE
@@ -136,4 +141,9 @@ class Play:
                         self.app.death()
                     else:
                         pass
+
+    def score_update(self):
+        score = self.font.render("Skóre: {0}".format(self.app.score), True, COLORS.get("black"))
+        self.app.screen.blit(self.player_1, [220, 825])
+        self.app.screen.blit(score, [260, 820])
 

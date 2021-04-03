@@ -22,7 +22,7 @@ class App:
         self.player_names = []
         self.player_scores = []
         # ICON
-        self.icon = pygame.image.load("imgs/logo.png")
+        self.icon = pygame.image.load("imgs/players/player_1.png")
         pygame.display.set_icon(self.icon)
         pygame.display.set_caption("Had")
         # ENTITIES
@@ -66,6 +66,7 @@ class App:
             self.state_machine.update()
             self.state_machine.draw()
             self.clock.tick(self.fps)
+            print(self.score)
         quit()
 
     def make_buttons(self):
@@ -94,10 +95,11 @@ class App:
         for num in range(self.apples_amount):
             apple = Apple(self, random.randint(0, CELL_NUMBER - 1), random.randint(0, CELL_NUMBER - 1))
             for a in self.apples:
-                if a.pos == apple.pos or apple.pos in self.snakes_start_pos:
-                    apple = Apple(self, random.randint(0, CELL_NUMBER - 1), random.randint(0, CELL_NUMBER - 1))
-                else:
-                    pass
+                for obst in self.obstacles:
+                    if a.pos == apple.pos or apple.pos in self.snakes_start_pos or apple.pos == obst.pos:
+                        apple = Apple(self, random.randint(0, CELL_NUMBER - 1), random.randint(0, CELL_NUMBER - 1))
+                    else:
+                        pass
             self.apples.append(apple)
 
     def make_obstacles(self):
@@ -105,10 +107,11 @@ class App:
         for num in range(self.obstacles_amount):
             obstacle = Obstacle(self, random.randint(0, CELL_NUMBER - 1), random.randint(0, CELL_NUMBER - 1))
             for obst in self.obstacles:
-                if obst.pos == obstacle.pos or obstacle.pos in self.snakes_start_pos:
-                    obstacle = Obstacle(self, random.randint(0, CELL_NUMBER - 1), random.randint(0, CELL_NUMBER - 1))
-                else:
-                    pass
+                for apple in self.apples:
+                    if obst.pos == obstacle.pos or obstacle.pos in self.snakes_start_pos or obstacle.pos == apple.pos:
+                        obstacle = Obstacle(self, random.randint(0, CELL_NUMBER - 1), random.randint(0, CELL_NUMBER - 1))
+                    else:
+                        pass
             self.obstacles.append(obstacle)
 
     def death(self):
@@ -129,10 +132,13 @@ class App:
             self.scores[index] = int(self.scores[index])
 
     def check_scores(self):
-        for score in self.scores:
-            if self.score > score:
-                self.new_high_score()
-                return True
+        if len(self.scores) <= 10:
+            self.new_high_score()
+        else:
+            for score in self.scores:
+                if self.score > score:
+                    self.new_high_score()
+                    return True
 
     def new_high_score(self):
         def func(score):

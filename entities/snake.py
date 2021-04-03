@@ -130,7 +130,6 @@ class Snake:
                 if block == apple.pos:
                     apple.randomize()
 
-
     def collision(self):
         if not 0 <= self.body[0].x < CELL_NUMBER or not 0 <= self.body[0].y < CELL_NUMBER:
             self.app.death()

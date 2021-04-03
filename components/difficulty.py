@@ -1,6 +1,7 @@
 import pygame
 from settings import *
 
+
 class Difficulty:
     def __init__(self, app, pos, type):
         self.app = app
