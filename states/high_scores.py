@@ -39,7 +39,7 @@ class HighScores:
                 pass
             else:
                 y += 60
-                self.show_scores(str(index+1) + ".)   " + str(pair[0]) + " - " + str(pair[1]), [270, y])
+                self.show_scores(str(index+1) + ".)   " + str(pair[0]) + " - " + str(pair[1]), [80, y])
 
     def high_scores_intro(self):
         self.app.state = "intro"
