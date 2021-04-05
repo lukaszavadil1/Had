@@ -49,9 +49,7 @@ class EndGame:
 
     def end_game_intro(self):
         # FROM GAME OVER STATE TO INTRO
-        # self.app.snake.reset()
-        self.app.state = "intro"
-        self.app.active_buttons = self.app.intro.intro_buttons
+        self.app.back_to_menu()
 
     def end_game_quit(self):
         # QUIT FROM GAME OVER STATE

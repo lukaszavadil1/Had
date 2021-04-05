@@ -62,9 +62,7 @@ class Play:
                     self.app.active_buttons = self.app.pause.pause_buttons
                     self.app.fps = FPS
                 if event.key == pygame.K_m:
-                    self.app.state = "intro"
-                    self.app.active_buttons = self.app.intro.intro_buttons
-                    self.app.fps = FPS
+                    self.app.back_to_menu()
 
     def play_update(self):
         # PLAY STATE UPDATE
@@ -88,9 +86,7 @@ class Play:
 
     def play_intro(self):
         # FROM PLAY STATE TO INTRO
-        self.app.state = "intro"
-        self.app.active_buttons = self.app.intro.intro_buttons
-        self.app.fps = FPS
+        self.app.back_to_menu()
 
     def play_pause(self):
         # FROM PLAY STATE TO PAUSE

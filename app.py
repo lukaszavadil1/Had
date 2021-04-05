@@ -26,7 +26,7 @@ class App:
         pygame.display.set_icon(self.icon)
         pygame.display.set_caption("Had")
         # ENTITIES
-        self.snakes_start_pos = [Vector2(5, 10), Vector2(4, 10), Vector2(3, 10), Vector2(5, 5), Vector2(4, 5), Vector2(3, 5)]
+        self.snakes_start_pos = [Vector2(6, 10), Vector2(5, 10), Vector2(4, 10), Vector2(3, 10), Vector2(6, 5), Vector2(5, 5), Vector2(4, 5), Vector2(3, 5)]
         self.snake = Snake(self, [Vector2(5, 10), Vector2(4, 10), Vector2(3, 10)], Vector2(0, 0), False, "green")
         self.snake_2 = Snake(self, [Vector2(5, 5), Vector2(4, 5), Vector2(3, 5)], Vector2(0, 0), False, "purple")
         self.apples_amount = 1
@@ -59,16 +59,17 @@ class App:
         pygame.quit()
         sys.exit()
 
+    # MAIN LOOP
     def run(self):
-        # MAIN LOOP
         while self.running:
             self.state_machine.get_events()
             self.state_machine.update()
             self.state_machine.draw()
             self.clock.tick(self.fps)
-            print(self.score)
+            print(self.snake.body)
         quit()
 
+    # MAKE METHODS
     def make_buttons(self):
         # MAKE BUTTONS
         self.intro.make_intro_buttons()
@@ -114,11 +115,23 @@ class App:
                         pass
             self.obstacles.append(obstacle)
 
+    # SHORTCUTS
     def death(self):
         self.state = "end_game"
         self.active_buttons = self.end_game.end_game_buttons
         self.fps = FPS
+        self.obstacles = []
+        self.apples = []
 
+    def back_to_menu(self):
+        self.state = "intro"
+        self.active_buttons = self.intro.intro_buttons
+        self.fps = FPS
+        self.score = 0
+        self.obstacles = []
+        self.apples = []
+
+    # SCORE MANAGEMENT
     def get_scores(self):
         with open(SCORES_FILE, "r") as f:
             try:
@@ -148,7 +161,6 @@ class App:
         self.players_scores = list(map(list, zip(self.player_names, self.scores)))
         self.players_scores.sort(reverse=True, key=func)
         self.set_scores()
-
 
     def set_scores(self):
         with open(SCORES_FILE, "w") as f:

@@ -127,8 +127,9 @@ class Snake:
 
         for block in self.body[1:]:
             for apple in self.app.apples:
-                if block == apple.pos:
-                    apple.randomize()
+                for obstacle in self.app.obstacles:
+                    if block == apple.pos or obstacle.pos == apple.pos:
+                        apple.randomize()
 
     def collision(self):
         if not 0 <= self.body[0].x < CELL_NUMBER or not 0 <= self.body[0].y < CELL_NUMBER:

@@ -25,6 +25,7 @@ class InputBox:
                     self.app.check_scores()
                     self.app.state = "intro"
                     self.app.active_buttons = self.app.intro.intro_buttons
+                    self.app.fps = FPS
                     self.text = ''
                 elif event.key == pygame.K_BACKSPACE:
                     self.text = self.text[:-1]

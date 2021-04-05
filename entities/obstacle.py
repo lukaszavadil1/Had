@@ -22,4 +22,3 @@ class Obstacle:
         self.pos = Vector2(self.x, self.y)
 
 
-

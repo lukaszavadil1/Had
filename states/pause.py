@@ -25,8 +25,7 @@ class Pause:
                 if event.key == pygame.K_q:
                     self.app.running = False
                 if event.key == pygame.K_m:
-                    self.app.state = "intro"
-                    self.app.active_buttons = self.app.intro.intro_buttons
+                    self.app.back_to_menu()
                 if event.key == pygame.K_p:
                     self.app.state = "interlude"
 
@@ -48,8 +47,7 @@ class Pause:
 
     def pause_intro(self):
         # FROM PAUSE STATE TO INTRO
-        self.app.state = "intro"
-        self.app.active_buttons = self.app.intro.intro_buttons
+        self.app.back_to_menu()
 
     def pause_interlude(self):
         # FROM PAUSE STATE TO PLAY
